@@ -7,9 +7,9 @@
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand|Open+Sans:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles-merged.css">
-    <link rel="stylesheet" href="css/style.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="{{asset('css/styles-merged.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
   </head>
 
   <body>
@@ -19,7 +19,7 @@
     <header role="banner" class="probootstrap-header">
       <div class="container">
         <div class="col-md-1" align="center">
-          <img src="img/Ecomoneda.png" height="100%" width="100%">
+          <img src="{{asset('img/Ecomoneda.png')}}" height="100%" width="100%">
         </div>
 
         <div class="col-md-11" align="center">
@@ -66,7 +66,7 @@
 
     @yield('content')
 
-    <footer class="probootstrap-footer probootstrap-bg" style="padding:1%; background-image: url(img/slider_3.jpg)">
+    <footer class="probootstrap-footer probootstrap-bg" style="padding:1%; background-image: url({{asset('img/slider_3.jpg')}})">
       <div class="container">
           <div class="col-md-6">
             <div class="probootstrap-footer-widget">
@@ -90,10 +90,10 @@
 
     <div class="gototop js-top">
       <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
-    </div>
-    <script src="js/scripts.min.js"></script>
-    <script src="js/main.min.js"></script>
-    <script src="js/custom.js"></script>
+    </div>{{asset('')}}
+    <script src="{{asset('js/scripts.min.js')}}"></script>
+    <script src="{{asset('js/main.min.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
 
   </body>
 </html>
