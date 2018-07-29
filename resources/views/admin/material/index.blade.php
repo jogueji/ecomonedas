@@ -15,26 +15,23 @@
         <thead>
           <tr class="table-success">
             <th scope="col">Nombre</th>
+            <th scope="col">Detalle</th>
             <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($videojuegos as $vj)
+          @foreach ($materials as $material)
             <tr>
-              <th scope="row">{{$vj->nombre}}</th>
+              <th scope="row">{{$material->name}}</th>
               <td>
-                @can('update=vj',$vj)
-                  <a href="{{ route('admin.edit', ['vj' => $vj->id]) }}">Editar</a>
-                @endcan
+                <a href="{{ route('adminMaterial.detail', ['material' => $material->id]) }}">Editar</a>
               </td>
               <td>
-                @can('publish=vj')
-                  @if ($vj->publicar==1)
-                    Publicado
-                  @else
-                    <a href="{{ route('publish.vj', ['vj' => $vj->id]) }}">Publicar</a>
-                  @endif
-                @endcan
+                <a href="{{ route('adminMaterial.edit', ['material' => $material->id]) }}">Editar</a>
+              </td>
+              <td>
+                <a href="{{ route('adminMaterial.delete', ['material' => $material->id]) }}">Editar</a>
               </td>
             </tr>
           @endforeach
@@ -42,46 +39,9 @@
       </table>
       <div class="row">
         <div class="col-md-12 text center">
-          {{ $videojuegos ->links() }}
+          {{ $materials ->links() }}
         </div>
       </div>
       </div>
     </section>
-@endsection
-
-  @endcan
-<table class="table table-hover">
-  <thead>
-    <tr class="table-success">
-      <th scope="col">Nombre</th>
-      <th scope="col">Editar</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($videojuegos as $vj)
-      <tr>
-        <th scope="row">{{$vj->nombre}}</th>
-        <td>
-          @can('update=vj',$vj)
-          <a href="{{ route('admin.edit', ['vj' => $vj->id]) }}">Editar</a>
-          @endcan
-        </td>
-        <td>
-          @can('publish=vj')
-            @if ($vj->publicar==1)
-                Publicado
-            @else
-              <a href="{{ route('publish.vj', ['vj' => $vj->id]) }}">Publicar</a>
-            @endif
-          @endcan
-        </td>
-      </tr>
-    @endforeach
-  </tbody>
-</table>
-<div class="row">
-  <div class="col-md-12 text center">
-    {{ $videojuegos ->links() }}
-  </div>
-</div>
 @endsection

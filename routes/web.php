@@ -27,25 +27,28 @@ Route::get('collectioncenter/{id}',
 
 Auth::routes();
 
-Route::group(['prefix'=>'adminMaterial', 'middleware'=>'auth'], function(){
-  Route::get('', [
+Route::group(['prefix'=>'adminMaterial'/*,'middleware'=>'auth'*/], function(){
+  Route::get('/', [
     'uses'=>'RecyclableMaterialController@getIndex'
   ]
-  )->name('admin.index');
+  )->name('adminMaterial.index');
+
   Route::get('create',
   [
     'uses'=>'RecyclableMaterialController@getCreate',
-    'as'=>'admin.create',
-    'middleware'=>'can:create-vj'
+    'as'=>'adminMaterial.create',
+    //'middleware'=>'can:create-vj'
   ]);
-  Route::get('edit/{vj}',
+
+  Route::get('edit/{material}',
   [
     'uses'=>'RecyclableMaterialController@getEdit',
-    'as'=>'admin.edit',
-    'middleware'=>'can:update-vj=vj,vj'
+    'as'=>'adminMaterial.edit',
+    //'middleware'=>'can:update-vj=vj,vj'
   ]
   );
-  Route::post('create',
+
+  /*Route::post('create',
   [
       'uses' => 'VideojuegoController@setCreate',
       'as' => 'admin.create',
@@ -56,5 +59,5 @@ Route::group(['prefix'=>'adminMaterial', 'middleware'=>'auth'], function(){
       'uses' => 'VideojuegoController@setEdit',
       'as' => 'admin.update',
       'middleware'=>'can:update-vj=vj,vj'
-  ]);
+  ]);*/
 });

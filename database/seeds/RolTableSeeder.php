@@ -12,7 +12,10 @@ class RolTableSeeder extends Seeder
     public function run()
     {
       $rol= new \App\Rol([
-        'description'=>'Administrador'
+        'description'=>'Administrador',
+        'permissions' => json_encode([
+                            'create-material' => true
+                          ])
       ]);
       $rol->save();
       $rol= new \App\Rol([
