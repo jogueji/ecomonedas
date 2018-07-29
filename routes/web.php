@@ -23,6 +23,28 @@ Route::get('collectioncenter/{id}',
 ]
 );
 
+Route::group(['prefix'=>'adminCenter'/*,'middleware'=>'auth'*/], function(){
+  Route::get('/', [
+    'uses'=>'CollectionCenterController@getAdminIndex'
+  ]
+  )->name('adminCenter.index');
+
+  Route::get('create',
+  [
+    'uses'=>'CollectionCenterController@getCreate',
+    'as'=>'adminCenter.create',
+    //'middleware'=>'can:create-vj'
+  ]);
+
+  Route::get('edit/{center}',
+  [
+    'uses'=>'CollectionCenterController@getEdit',
+    'as'=>'adminCenter.edit',
+    //'middleware'=>'can:update-vj=vj,vj'
+  ]
+  );
+
+});
 
 
 Auth::routes();
