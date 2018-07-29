@@ -12,8 +12,8 @@ class Collectioncenter extends Model
   protected $fillable=['name','direction','imagen'];
   protected $dates=['deleted_at'];
 
-  public function province() {
-    return $this->belongsTo('App\Province');
+  public function provinces() {
+    return $this->belongsTo('App\Province','province_id');
   }
 
   public function user(){

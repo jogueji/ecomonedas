@@ -18,7 +18,7 @@ Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
 )->name('cc.index');
 Route::get('collectioncenter/{id}',
 [
-  'uses'=>'VideojuegoController@getCenter',
+  'uses'=>'CollectioncenterController@getCenter',
   'as'=>'cc.detalle'
 ]
 );
