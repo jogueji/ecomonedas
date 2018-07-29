@@ -12,8 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('collectioncenter.collectioncenter');
+    return view('welcome');
 });
+Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
+)->name('cc.index');
+Route::get('collectioncenter/{id}',
+[
+  'uses'=>'VideojuegoController@getCenter',
+  'as'=>'cc.detalle'
+]
+);
+
+
 
 Auth::routes();
 
