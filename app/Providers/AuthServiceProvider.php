@@ -25,6 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('create-vj',function($user){
+            return $user->hasAccess(['create-vj']);
+        });
+
+        Gate::define('update-vj', function($user,\App\Videojuego $vj){
+          return $user -> tieneAcceso(['update-vj']) or $user->id == $vj->user_id;
+        });
+
+        Gate::define('see-all-vj', function($user){
+            return $user->tieneRol('supervisor') or $user->tieneRol('propietario');
+        });
+
+        Gate::define('publish-vj', function($user){
+            return $user->tieneAcceso(['publish-vj']);
+        });
         //
     }
 }

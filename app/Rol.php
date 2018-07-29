@@ -12,18 +12,18 @@ class Rol extends Model
   public function users() {
     return $this->hasMany('App\User');
   }
-
-  /*public function hasAccess(array $permissions){
+  
+  public function hasAccess(array $permissions){
     foreach($permissions as $permission){
-      if($this->tienePermiso($permiso)){
+      if($this->hasPermission($permission)){
         return true;
       }
     }
     return false;
   }
 
-  protected function tienePermiso(string $permiso){
-    $permisos=json_decode($this->permissions,true);
-    return $permisos[$permiso]??false;
-  }*/
+  protected function hasPermission(string $permission){
+    $permissions=json_decode($this->permissions,true);
+    return $permissions[$permission]??false;
+  }
 }
