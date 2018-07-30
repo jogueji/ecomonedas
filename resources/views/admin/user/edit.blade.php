@@ -5,8 +5,8 @@
     @include('partials.errors')
     <div class="container">
       <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
-        <h4 class="sub-heading">Modifica tus datos</h4>
-        <h2 class="heading">Actualización de datos</h2>
+        <h4 class="sub-heading">Modifica los datos</h4>
+        <h2 class="heading">Actualización usuario</h2>
       </div>
       <form action="{{ route('adminUser.update') }}" method="post" class="probootstrap-form mb60">
         @csrf

@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use Hash;
 use Gate;
+use Validator;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+  public function getIndex(){
+    $list=User::orderBy('name','asc');
+    $list=$list->paginate(10);
+    return view('admin.user.index',['users'=>$list]);
+  }
+
   public function setCreate(Request $request)
   {
       $this->validate($request, [
@@ -44,7 +53,6 @@ class UserController extends Controller
       'address' => 'required|string',
       'email' => 'required|string|email|max:50|unique:users,email,'.$user->id
     ]);
-    $user=Auth::user();
     $user->name= $request->input('name');
     $user->lastname= $request->input('lastname');
     $user->lastname1= $request->input('lastname1');
@@ -64,14 +72,31 @@ class UserController extends Controller
 
   public function setPassword(Request $request){
     $user=Auth::user();
-    Validator::extend('isValid',function($name,$value,$parameters){
-      return Hash::check($value, $parameters[0]);
-    });
+    if(!Hash::check($request->input('password'),$user->password)){
+      $validator = Validator::make([], []);
+      $validator->errors()->add('password', 'La contraseña es incorrecta');
+      return redirect()->route('adminUser.password')->withErrors($validator)->withInput();
+    }
     $this->validate($request, [
-        'password' => 'isValid,'.$user->password,
         'newPassword' => 'required|string|min:6|confirmed'
       ]);
-    Auth::user()->password=Hash::make($request->input('newPassword'));
+    $user->password=Hash::make($request->input('newPassword'));
+    $user->save();
     return redirect()->route('index')->with('message', 'Contraseña modificada');
+  }
+
+  public function setEmail(Request $request){
+    $user=Auth::user();
+    if(!Hash::check($request->input('password'),$user->password)){
+      $validator = Validator::make([], []);
+      $validator->errors()->add('password', 'La contraseña es incorrecta');
+      return redirect()->route('adminUser.password')->withErrors($validator)->withInput();
+    }
+    $this->validate($request, [
+        'email' => 'required|string|email|max:50|unique:users,email,'.$user->id
+      ]);
+    $user->email=$request->input('email');
+    $user->save();
+    return redirect()->route('index')->with('message', 'Correo modificado');
   }
 }
