@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
         'name'=>'Admin',
         'lastname'=>'Guerrero',
         'lastname1'=>'Soto',
-        'direction'=>'Donde el diablo perdio la chaqueta',
+        'address'=>'Donde el diablo perdio la chaqueta',
         'password'=>Hash::make('123456'),
         'phone'=>'2555-5555'
       ]);

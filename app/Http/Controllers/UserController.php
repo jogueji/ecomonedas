@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Auth;
 use Gate;
-use Crypt;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +14,7 @@ class UserController extends Controller
         'lastname' => 'required|string|min:3',
         'lastname1' => 'required|string|min:3',
         'phone' => 'required|string|min:9',
-        'direction' => 'required|string',
+        'address' => 'required|string',
         'email' => 'required|string|email|max:50|unique:users',
         'password' => 'required|string|min:6|confirmed'
       ]);
@@ -42,7 +41,7 @@ class UserController extends Controller
       'lastname' => 'required|string|min:3',
       'lastname1' => 'required|string|min:3',
       'phone' => 'required|string|min:9',
-      'direction' => 'required|string',
+      'address' => 'required|string',
       'email' => 'required|string|email|max:50|unique:users,email,'.$user->id
     ]);
     $user=Auth::user();
@@ -50,7 +49,7 @@ class UserController extends Controller
     $user->lastname= $request->input('lastname');
     $user->lastname1= $request->input('lastname1');
     $user->phone= $request->input('phone');
-    $user->direction= $request->input('direction');
+    $user->address= $request->input('address');
     $user->email= $request->input('email');
     $user->save();
     return redirect()->route('index')->with('message', 'Datos modificados');
@@ -65,8 +64,11 @@ class UserController extends Controller
 
   public function setPassword(Request $request){
     $user=Auth::user();
+    Validator::extend('isValid',function($name,$value,$parameters){
+      return Hash::check($value, $parameters[0]);
+    });
     $this->validate($request, [
-        //'password' => Hash::check('plain-text', $hashedPassword),//'same:'.(Crypt::decrypt(Auth::user()->password)),//o se puede encriptar el request
+        'password' => 'isValid,'.$user->password,
         'newPassword' => 'required|string|min:6|confirmed'
       ]);
     Auth::user()->password=Hash::make($request->input('newPassword'));

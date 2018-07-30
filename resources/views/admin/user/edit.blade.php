@@ -31,8 +31,8 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="direction">Dirección</label>
-              <textarea class="form-control" id="direction" name="direction">{{Auth::user()->direction}}</textarea>
+              <label for="address">Dirección</label>
+              <textarea class="form-control" id="address" name="address">{{Auth::user()->address}}</textarea>
             </div>
           </div>
           <div class="col-md-4">
