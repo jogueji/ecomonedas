@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Crear material reciclable')
+@section('title', 'Editar material reciclable')
 @section('content')
   <section class="probootstrap-section">
     @include('partials.errors')
@@ -15,25 +15,25 @@
           <div class="col-md-4">
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input id="name" type="text" class="form-control" value={{$material->name}} name="name" value="{{ old('name') }}">
+                <input id="name" type="text" class="form-control" value={{$material->name}} name="name">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
                 <label for="price">Precio por kilogramo</label>
-                <input id="price" type="number" value={{$material->price}} step="0.01" min="0" class="form-control" name="price" value="{{ old('price') }}">
+                <input id="price" type="number" value={{$material->price}} step="0.01" min="0" class="form-control" name="price">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
                 <label for="color">Color</label>
-                <input id="color" type="color" value={{$material->color}} class="form-control" name="color" value="{{ old('color') }}">
+                <input id="color" type="color" value={{$material->color}} class="form-control" name="color">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
                 <label for="image">Imagen</label>
-                <input id="image" type="file" class="form-control" name="image" accept="image/*" value="{{ old('image') }}">
+                <input id="image" type="file" class="form-control" name="image" accept="image/*">
             </div>
           </div>
           <div class="col-md-12" align="center">

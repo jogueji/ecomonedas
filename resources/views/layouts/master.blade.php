@@ -27,24 +27,32 @@
             <div class="mobile-menu-overlay"></div>
             <nav role="navigation" class="probootstrap-nav hidden-xs">
               <ul class="probootstrap-main-nav">
+                <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Inicio</a></li>
+                @can ('management')
+                  <li class="nav-item dropdown {{Route::currentRouteName()==''||'adminMaterial.index'||''?'class=active':''}}">
+                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Gestión<span class="caret"></span></a>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{ route('adminMaterial.index') }}">Usuarios</a>
+                          <a class="dropdown-item" href="{{ route('adminMaterial.index') }}">Centro de acopio</a>
+                          <a class="dropdown-item" href="{{ route('adminMaterial.index') }}">Material reciclable</a>
+                          <a class="dropdown-item" href="{{ route('adminMaterial.index')}}">Cupones</a>
+                      </div>
+                  </li>
+                @endcan
+                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
                   @guest
-                      <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Inicio</a></li>
-                      <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
                   @else
-                      <li class="nav-item dropdown">
+                      <li class="nav-item dropdown {{Route::currentRouteName()=='adminUser.email'||'adminUser.password'||'adminUser.update'?'class=active':''}}">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
-
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
-                              </a>
-
+                              <a class="dropdown-item" href="{{ route('adminUser.edit') }}">Modificar</a>
+                              <a class="dropdown-item" href="{{ route('adminUser.email') }}">Correo</a>
+                              <a class="dropdown-item" href="{{ route('adminUser.password') }}">Contraseña</a>
+                              <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   @csrf
                               </form>
