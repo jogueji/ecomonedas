@@ -12,7 +12,7 @@
                   <div class="text">
                     <h2 class="heading">Centros de Acopio</h2>
                     <p>Lista de Centros de Acopio</p>
-                    <p><a href="#" class="btn btn-primary btn-sm">Ir</a></p>
+                    <p><a href="{{ route('cc.index') }}" class="btn btn-primary btn-sm">Ir</a></p>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      
+
 
 
     </div>

@@ -28,6 +28,8 @@
             <nav role="navigation" class="probootstrap-nav hidden-xs">
               <ul class="probootstrap-main-nav">
                   @guest
+                      <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Inicio</a></li>
+                      <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
                   @else
@@ -73,7 +75,7 @@
               <h4 class="heading">Contactenos</h4>
               <ul class="stack-link">
                 <li>Telefono: <a href="tel:2555-5555">2555-5555</a></li>
-                <li>Correo: <a href="mailto:ecomonedas@info.com">ecomonedas@info.com</a> </li>
+                <li>Correo: <a href="mailto:info@ecomonedas.com">info@ecomonedas.com</a> </li>
               </ul>
             </div>
           </div>
