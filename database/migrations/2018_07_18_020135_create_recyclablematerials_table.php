@@ -16,7 +16,7 @@ class CreateRecyclablematerialsTable extends Migration
         Schema::create('recyclablematerials', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name',25);
-          $table->string('image',100);
+          $table->string('image',200);
           $table->decimal('price',8,2);
           $table->string('color',7);//codigo del color #000000
           $table->unsignedInteger('user_id');

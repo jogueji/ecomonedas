@@ -25,13 +25,15 @@
             <tr>
               <th scope="row">{{$material->name}}</th>
               <td>
-                <a href="{{ route('adminMaterial.detail', ['material' => $material->id]) }}">Editar</a>
+                <a href="{{ route('adminMaterial.detail', ['material' => $material->id]) }}">Detalle</a>
               </td>
               <td>
                 <a href="{{ route('adminMaterial.edit', ['material' => $material->id]) }}">Editar</a>
               </td>
               <td>
-                <a href="{{ route('adminMaterial.delete', ['material' => $material->id]) }}">Editar</a>
+                <a href="{{ route('adminMaterial.delete', ['material' => $material->id]) }}"
+                  onClick="confirm('¿Esta seguro que desea eliminarlo?')"
+                  >Eliminar</a>
               </td>
             </tr>
           @endforeach

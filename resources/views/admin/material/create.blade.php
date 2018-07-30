@@ -19,8 +19,8 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-                <label for="precio">Precio</label>
-                <input id="precio" type="precio" class="form-control" name="precio" value="{{ old('precio') }}">
+                <label for="price">Precio por kilogramo</label>
+                <input id="price" type="number" placeholder="0.0" step="0.01" min="0" class="form-control" name="price" value="{{ old('price') }}">
             </div>
           </div>
           <div class="col-md-4">
@@ -32,7 +32,7 @@
           <div class="col-md-6">
             <div class="form-group">
                 <label for="image">Imagen</label>
-                <input id="image" type="file" class="form-control" name="image" value="{{ old('image') }}">
+                <input id="image" type="file" class="form-control" name="image" accept="image/*" value="{{ old('image') }}">
             </div>
           </div>
           <div class="col-md-12" align="center">

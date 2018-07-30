@@ -14,16 +14,22 @@ class RolTableSeeder extends Seeder
       $rol= new \App\Rol([
         'description'=>'Administrador',
         'permissions' => json_encode([
-                            'create-material' => true
+                            'management' => true
                           ])
       ]);
       $rol->save();
       $rol= new \App\Rol([
-        'description'=>'Administrador de Centro de Acopio'
+        'description'=>'Administrador de Centro de Acopio',
+        'permissions' => json_encode([
+                            'redeem' => true
+                          ])
       ]);
       $rol->save();
       $rol= new \App\Rol([
-        'description'=>'Cliente'
+        'description'=>'Cliente',
+        'permissions' => json_encode([
+                            'buy' => true
+                          ])
       ]);
       $rol->save();
     }

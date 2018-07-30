@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
         'lastname'=>'Guerrero',
         'lastname1'=>'Soto',
         'direction'=>'Donde el diablo perdio la chaqueta',
-        'password'=>'123456',
+        'password'=>Hash::make('123456'),
         'phone'=>'2555-5555'
       ]);
       $user->rol()->associate(\App\Rol::find(1));

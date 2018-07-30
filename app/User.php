@@ -49,12 +49,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Coupon');
     }
 
-    /*public function hasAccess(array $permissions){
-      foreach($this->rols as $rol){
-        if($rol->hasAccess($permissions)){
-          return true;
-        }
-      }
-      return false;
+    public function hasAccess(array $permissions){
+      return $this->rol->hasAccess($permissions);
+    }
+
+    /*public function tieneRol($nombre){
+        return $this ->roles()->where('name',$nombre)->count()==1;
     }*/
 }
