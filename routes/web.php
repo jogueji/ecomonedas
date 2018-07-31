@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
 )->name('cc.index');
 
@@ -47,6 +47,66 @@ Route::group(['prefix'=>'adminCenter'/*,'middleware'=>'auth'*/], function(){
 
 });
 
+Route::group(['prefix'=>'adminUser','middleware'=>'auth'], function(){
+  Route::get('/',
+  [
+      'uses' => 'UserController@getIndex',
+      'as' => 'adminUser.index'
+  ]
+  );
+
+  Route::get('create',function(){
+    return view("admin.user.create");
+  })->name('adminUser.create');
+
+  Route::post('create',
+  [
+      'uses' => 'UserController@setCreate',
+      'as' => 'adminUser.create'
+  ]
+  );
+
+  Route::get('edit',function(){
+    return view("admin.user.edit");
+  })->name('adminUser.edit');
+
+  Route::post('edit', [
+      'uses' => 'UserController@update',
+      'as' => 'adminUser.update'
+  ]);
+
+  Route::get('password',function(){
+    return view("admin.user.password");
+  })->name('adminUser.password');
+
+  Route::post('password',[
+    'uses' => 'UserController@setPassword',
+    'as' => 'adminUser.setPassword'
+  ]);
+
+  Route::get('email',function(){
+    return view("admin.user.email");
+  })->name('adminUser.email');
+
+  Route::post('email',[
+    'uses' => 'UserController@setEmail',
+    'as' => 'adminUser.setEmail'
+  ]);
+
+  Route::get('delete/{user}',
+  [
+    'uses'=>'UserController@delete',
+    'as'=>'adminUser.delete'
+  ]
+  );
+
+  Route::get('detail/{user}',
+  [
+    'uses'=>'UserController@detail',
+    'as'=>'adminUser.detail'
+  ]
+  );
+});
 
 Auth::routes();
 

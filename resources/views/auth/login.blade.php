@@ -39,7 +39,6 @@
             <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Ingresar">
             </div>
-            <a href="{{ route('password.request') }}">¿Has olvidado tu contraseña?</a>
           </form>
         </div>
         <div class="col-md-4"></div>

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name',25);
             $table->string('lastname',25);
             $table->string('lastname1',25);
-            $table->text('direction');
+            $table->text('address');
             $table->string('password');
             $table->string('phone',9);
             $table->integer('rol_id')->unsigned();
