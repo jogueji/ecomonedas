@@ -17,7 +17,7 @@ class CollectionCenterController extends Controller
 public function getCenter($id)
 {
     $center = Collectioncenter::where('id', $id)->first();
-    return view('collectioncenter.detalle', ['cc' => $center]);
+    return view('collectioncenter.detalle', ['center' => $center]);
 }
 public function getAdminIndex(/*Store $session*/){
   $centers=Collectioncenter::orderBy('name','asc');

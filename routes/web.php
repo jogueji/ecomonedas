@@ -16,6 +16,7 @@ Route::get('/', function () {
 })->name('index');
 Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
 )->name('cc.index');
+
 Route::get('collectioncenter/{id}',
 [
   'uses'=>'CollectioncenterController@getCenter',
