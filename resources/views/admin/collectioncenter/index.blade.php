@@ -25,13 +25,13 @@
             <tr>
               <th scope="row">{{$center->name}}</th>
               <td>
-                <a href="{{ route('adminCenter.detail', ['center' => $center->id]) }}">Editar</a>
+                <a href="{{ route('cc.detalle', ['center' => $center->id]) }}">Detalle</a>
               </td>
               <td>
                 <a href="{{ route('adminCenter.edit', ['center' => $center->id]) }}">Editar</a>
               </td>
               <td>
-                <a href="{{ route('adminCenter.delete', ['center' => $center->id]) }}">Editar</a>
+                <a href="{{ route('adminCenter.edit', ['center' => $center->id]) }}">Eliminar</a>
               </td>
             </tr>
           @endforeach
