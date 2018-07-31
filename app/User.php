@@ -37,7 +37,7 @@ class User extends Authenticatable
       return $this->hasOne('App\Wallet');
     }
 
-    public function Recyclablematerials(){
+    public function recyclablematerials(){
       return $this->hasMany('App\Recyclablematerial');
     }
 
