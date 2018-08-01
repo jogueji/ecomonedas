@@ -21,7 +21,7 @@
           <div class="col-md-4">
             <div class="form-group">
                 <label for="direction">Direccion</label>
-                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="{{ old('direction') }}" placeholder="Direccion del centro de acopio"></textarea>
+                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="" placeholder="Direccion del centro de acopio">{{ old('direction') }}</textarea>
             </div>
           </div>
 
@@ -31,10 +31,10 @@
 
                             <select id="province" name="province" class="form-control">
                               {{-- ciclo para crear select --}}
-                              @foreach ($province as $prov)
-                              <option value="{{$prov->id}}" class="" name="provincias"
+                              @foreach ($provinces as $prov)
+                              <option value="{{$prov->id}}" class="" name="provinces"
                                 {{($center->province_id===$prov->id) ? ' selected' : ' '}}>
-                               {{$prov->nombre}}
+                               {{$prov->name}}
                               </option>
                               @endforeach
                             </select>

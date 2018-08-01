@@ -20,7 +20,7 @@
           <div class="col-md-4">
             <div class="form-group">
                 <label for="precio">Direccion</label>
-                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="{{ old('direction') }}" placeholder="Direccion del centro de acopio"></textarea>
+                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="" placeholder="Direccion del centro de acopio">{{ old('direction') }}</textarea>
             </div>
           </div>
           <div class="col-md-4">

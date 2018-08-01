@@ -44,13 +44,18 @@ Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(
   ]
   );
 
-  Route::get('edit/{center}',
+  Route::get('edit/{id}',
   [
-    'uses'=>'CollectionCenterController@update',
-    'as'=>'adminCenter.update',
+    'uses'=>'CollectionCenterController@getEdit',
+    'as'=>'adminCenter.edit',
     //'middleware'=>'can:update-vj=vj,vj'
   ]
   );
+
+  Route::post('edit', [
+      'uses' => 'CollectionCenterController@update',
+      'as' => 'adminCenter.update'
+  ]);
 
   Route::get('delete/{center}',
   [
@@ -58,6 +63,7 @@ Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(
     'as'=>'adminCenter.delete'
   ]
   );
+
 
 });
 
