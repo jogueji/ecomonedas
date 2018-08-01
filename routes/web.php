@@ -32,7 +32,7 @@ Route::group(['prefix'=>'public'], function(){
       'as' => 'public.materials',
   ]
   );
-  Route::get('materialDetail',
+  Route::get('materialDetail/{material}',
   [
       'uses' => 'RecyclableMaterialController@detail',
       'as' => 'public.materialDetail',

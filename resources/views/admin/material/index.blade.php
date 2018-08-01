@@ -25,7 +25,7 @@
             <tr>
               <th scope="row">{{$material->name}}</th>
               <td>
-                <a href="{{ route('adminMaterial.detail', ['material' => $material->id]) }}">Detalle</a>
+                <a href="{{ route('public.materialDetail', ['material' => $material->id]) }}">Detalle</a>
               </td>
               <td>
                 <a href="{{ route('adminMaterial.edit', ['material' => $material->id]) }}">Editar</a>
