@@ -53,7 +53,7 @@
               <textarea class="form-control" id="address" name="address">{{ old('address') }}</textarea>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="phone">Telefono (####-####)</label>
               <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">

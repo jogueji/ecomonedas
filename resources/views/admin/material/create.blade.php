@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-                <label for="price">Precio por kilogramo</label>
+                <label for="price">Ecomonedas por kg</label>
                 <input id="price" type="number" placeholder="0.0" step="0.01" min="0" class="form-control" name="price" value="{{ old('price') }}">
             </div>
           </div>

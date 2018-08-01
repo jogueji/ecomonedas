@@ -9,8 +9,4 @@ class Recyclablematerial extends Model
   use SoftDeletes;
   protected $fillable = ['name','image','price','color'];
   protected $dates=['deleted_at'];
-  
-  public function user(){
-    return $this->belongsTo('App\User');
-  }
 }

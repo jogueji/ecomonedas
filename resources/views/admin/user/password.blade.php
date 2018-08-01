@@ -5,7 +5,7 @@
     @include('partials.errors')
     <div class="container">
       <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
-        <h4 class="sub-heading">Modifica tus datos</h4>
+        <h4 class="sub-heading">Modifica tu contraseña</h4>
         <h2 class="heading">Cambio de contraseña</h2>
       </div>
       <form action="{{ route('adminUser.setPassword') }}" method="post" class="probootstrap-form mb60">

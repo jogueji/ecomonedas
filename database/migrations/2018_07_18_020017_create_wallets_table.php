@@ -15,7 +15,9 @@ class CreateWalletsTable extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('residue',8,2);
+            $table->decimal('totaleco',8,2);
+            $table->decimal('totalcoupon',8,2);
+            $table->decimal('total',8,2);
             $table->unsignedInteger('user_id');
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -42,8 +42,6 @@ class RecyclableMaterialController extends Controller
                       'image' => $imagePath,
                       'color'=>$request->input('color')
                     ]);
-      $user=Auth::user();
-      $material->user()->associate($user);
       $material->save();
       return redirect()->route('adminMaterial.index')->with('message', 'Material reciclable '.$request->input('nombre').' creado');
   }
@@ -72,5 +70,16 @@ class RecyclableMaterialController extends Controller
     Storage::disk('public')->delete($material->imagen);
     $material->delete();
     return redirect()->route('adminMaterial.index')->with('message', 'Material reciclable eliminado');
+  }
+
+  public function getList(){
+    $list=Recyclablematerial::orderBy('name','asc');
+    $list=$list->paginate(10);
+    return view('public.recyclablematerial.index',['materials'=>$list]);
+  }
+
+  public function detail($id){
+    $material=Recyclablematerial::find($id);
+    return view('public.recyclablematerial.detail',['material'=>$material]);
   }
 }

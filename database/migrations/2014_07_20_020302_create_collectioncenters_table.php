@@ -34,8 +34,6 @@ class CreateCollectioncentersTable extends Migration
       Schema::table('collectioncenters',function(Blueprint $table){
         $table->dropForeign('collectioncenters_province_id_foreign');
         $table->dropColumn('province_id');
-        $table->dropForeign('collectioncenters_user_id_foreign');
-        $table->dropColumn('user_id');
       });
       Schema::dropIfExists('collectioncenters');
     }

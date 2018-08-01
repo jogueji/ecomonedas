@@ -23,9 +23,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone',9);
             $table->integer('rol_id')->unsigned();
+            $table->unsignedInteger('collectioncenter_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
+            $table->foreign('collectioncenter_id')->references('id')->on('collectioncenters')->onDelete('cascade');
             $table->rememberToken();
         });
     }
@@ -41,6 +43,8 @@ class CreateUsersTable extends Migration
       Schema::table('users',function(Blueprint $table){
         $table->dropForeign('users_rol_id_foreign');
         $table->dropColumn('rol_id');
+        $table->dropForeign('users_collectioncenter_id_foreign');
+        $table->dropColumn('collectioncenter_id');
       });
 
         Schema::dropIfExists('users');
