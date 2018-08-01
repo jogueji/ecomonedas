@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Wallet extends Model
 {
     use SoftDeletes;
-    protected $fillable=['totaleco'];
-    protected $fillable=['totalcoupon'];
-    protected $fillable=['total'];
+    protected $fillable=['totaleco','totalcoupon','total'];
     protected $dates=['deleted_at'];
 
     public function user() {

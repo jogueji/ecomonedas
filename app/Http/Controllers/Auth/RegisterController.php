@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Wallet;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -78,6 +79,13 @@ class RegisterController extends Controller
         ]);
         $user->rol()->associate(\App\Rol::find(3));
         $user->save();
+        $wallet=new Wallet([
+          'totaleco'=>0,
+          'totalcoupon'=>0,
+          'total'=>0
+        ]);
+        $wallet->user()->associate($user);
+        $wallet->save();
         return $user;
     }
 }

@@ -74,7 +74,7 @@ class RecyclableMaterialController extends Controller
 
   public function getList(){
     $list=Recyclablematerial::orderBy('name','asc');
-    $list=$list->paginate(10);
+    $list=$list->paginate(12);
     return view('public.recyclablematerial.index',['materials'=>$list]);
   }
 

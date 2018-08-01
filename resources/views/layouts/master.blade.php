@@ -13,7 +13,6 @@
   </head>
 
   <body>
-
     <div class="probootstrap-loader"></div>
 
     <header role="banner" class="probootstrap-header">
@@ -38,6 +37,12 @@
                           <a href="{{ route('adminMaterial.index')}}">Cupones</a>
                       </div>
                   </li>
+                @endcan
+                @can ('reedem')
+                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Canjear materiales</a></li>
+                @endcan
+                @can ('buy')
+                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Comprar</a></li>
                 @endcan
                 <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.material')?'active':''}}"><a href="{{ route('public.materials') }}">Materiales reciclables</a></li>
