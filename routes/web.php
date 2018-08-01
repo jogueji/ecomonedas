@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
+
 Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
 )->name('cc.index');
 
@@ -23,6 +24,21 @@ Route::get('collectioncenter/{id}',
   'as'=>'cc.detalle'
 ]
 );
+
+Route::group(['prefix'=>'public'], function(){
+  Route::get('materials',
+  [
+      'uses' => 'RecyclableMaterialController@getList',
+      'as' => 'public.materials',
+  ]
+  );
+  Route::get('materialDetail',
+  [
+      'uses' => 'RecyclableMaterialController@detail',
+      'as' => 'public.materialDetail',
+  ]
+  );
+});
 
 Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(){
   Route::get('/', [
@@ -111,7 +127,7 @@ Route::group(['prefix'=>'adminUser','middleware'=>'auth'], function(){
   [
     'uses'=>'UserController@delete',
     'as'=>'adminUser.delete',
-    'middleware'=>'can:edit-user,user'
+    'middleware'=>'can:delete-user,user'
   ]
   );
 

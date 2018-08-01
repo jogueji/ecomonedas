@@ -56,32 +56,32 @@ class UserController extends Controller
       return redirect()->route('adminUser.index')->with('message', 'Usuario '.$request->input('name').' creado');
   }
 
-  public function update(Request $request)
+  public function update(Request $request,User $user)
   {
-    $user=Auth::user();
     $this->validate($request, [
       'name' => 'required|string|min:3',
       'lastname' => 'required|string|min:3',
       'lastname1' => 'required|string|min:3',
       'phone' => 'required|string|min:9|max:9',
-      'address' => 'required|string',
-      'email' => 'required|string|email|max:50|unique:users,email,'.$user->id
+      'address' => 'required|string'
     ]);
     $user->name= $request->input('name');
     $user->lastname= $request->input('lastname');
     $user->lastname1= $request->input('lastname1');
     $user->phone= $request->input('phone');
     $user->address= $request->input('address');
-    $user->email= $request->input('email');
     $user->save();
-    return redirect()->route('index')->with('message', 'Datos modificados');
+    return redirect()->route($user->id==Auth::user()->id?'index':'adminUser.index')->with('message', 'Usuario modificado');
   }
 
-  public function delete($id){
-    $material = Recyclablematerial::find($id);
-    Storage::disk('public')->delete($material->imagen);
-    $material->delete();
-    return redirect()->route('adminMaterial.index')->with('message', 'Material reciclable eliminado');
+  public function delete(User $user){
+    $user->delete();
+    return redirect()->route('adminUser.index')->with('message', 'Usuario eliminado');
+  }
+
+  public function detail($id){
+    $user=User::find($id);
+    return view('admin.user.detail',['user'=>$user]);
   }
 
   public function setPassword(Request $request){

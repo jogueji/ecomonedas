@@ -36,6 +36,10 @@ class AuthServiceProvider extends ServiceProvider
           return ($user -> hasAccess(['management']) and $userEdit->rol_id==2) or $userEdit->id==\Auth::user()->id;
         });
 
+        Gate::define('delete-user', function($user,\App\User $userDelete){
+          return ($user -> hasAccess(['management']) and $userDelete->rol_id==2);
+        });
+
         Gate::define('buy', function($user){
           return $user -> hasAccess(['buy']);
         });
