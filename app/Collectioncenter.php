@@ -16,7 +16,4 @@ class Collectioncenter extends Model
     return $this->belongsTo('App\Province','province_id');
   }
 
-  public function user(){
-    return $this->belongsTo('App\User');
-  }
 }

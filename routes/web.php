@@ -24,7 +24,7 @@ Route::get('collectioncenter/{id}',
 ]
 );
 
-Route::group(['prefix'=>'adminCenter'/*,'middleware'=>'auth'*/], function(){
+Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(){
   Route::get('/', [
     'uses'=>'CollectionCenterController@getAdminIndex'
   ]
@@ -37,11 +37,25 @@ Route::group(['prefix'=>'adminCenter'/*,'middleware'=>'auth'*/], function(){
     //'middleware'=>'can:create-vj'
   ]);
 
+  Route::post('create',
+  [
+      'uses' => 'CollectionCenterController@setCreate',
+      'as' => 'adminUser.create'
+  ]
+  );
+
   Route::get('edit/{center}',
   [
-    'uses'=>'CollectionCenterController@getEdit',
-    'as'=>'adminCenter.edit',
+    'uses'=>'CollectionCenterController@update',
+    'as'=>'adminCenter.update',
     //'middleware'=>'can:update-vj=vj,vj'
+  ]
+  );
+
+  Route::get('delete/{center}',
+  [
+    'uses'=>'CollectionCenterController@delete',
+    'as'=>'adminCenter.delete'
   ]
   );
 
