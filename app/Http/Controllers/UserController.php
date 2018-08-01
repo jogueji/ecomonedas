@@ -49,7 +49,7 @@ class UserController extends Controller
       'name' => 'required|string|min:3',
       'lastname' => 'required|string|min:3',
       'lastname1' => 'required|string|min:3',
-      'phone' => 'required|string|min:9',
+      'phone' => 'required|string|min:9|max:9',
       'address' => 'required|string',
       'email' => 'required|string|email|max:50|unique:users,email,'.$user->id
     ]);
