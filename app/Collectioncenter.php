@@ -12,8 +12,12 @@ class Collectioncenter extends Model
   protected $fillable=['name','direction','imagen'];
   protected $dates=['deleted_at'];
 
-  public function provinces() {
+  public function province() {
     return $this->belongsTo('App\Province','province_id');
+  }
+
+  public function usuarios() {
+    return $this->hasMany('App\User');
   }
 
 }

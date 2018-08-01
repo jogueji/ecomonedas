@@ -8,7 +8,7 @@
         <h4 class="sub-heading">Añade los datos</h4>
         <h2 class="heading">Registra un administrador de centros de acopio</h2>
       </div>
-      <form action="{{ route('register') }}" method="post" class="probootstrap-form mb60">
+      <form action="{{ route('adminUser.create') }}" method="post" class="probootstrap-form mb60">
         @csrf
         <div class="col-md-8">
           <div class="col-md-12">
@@ -53,10 +53,20 @@
               <textarea class="form-control" id="address" name="address">{{ old('address') }}</textarea>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="form-group">
               <label for="phone">Telefono (####-####)</label>
               <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="center">Centro de acopio</label>
+                <select id="center" name="center" class="form-control">
+                  @foreach ($centers as $center)
+                  <option value="{{$center->id}}">{{$center->name}}</option>
+                  @endforeach
+                </select>
             </div>
           </div>
           <br>

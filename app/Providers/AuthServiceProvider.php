@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -31,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('redeem', function($user){
           return $user -> hasAccess(['redeem']);
+        });
+
+        Gate::define('edit-user', function($user,\App\User $userEdit){
+          return ($user -> hasAccess(['management']) and $userEdit->rol_id==2) or $userEdit->id==\Auth::user()->id;
         });
 
         Gate::define('buy', function($user){

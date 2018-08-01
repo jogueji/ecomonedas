@@ -33,7 +33,7 @@
                       <a href="#" data-toggle="dropdown">Gestión<span class="caret"></span></a>
                       <div class="dropdown-menu">
                           <a href="{{ route('adminUser.index') }}">Usuarios</a>
-                          <a href="{{ route('adminMaterial.index') }}">Centro de acopio</a>
+                          <a href="{{ route('adminCenter.index') }}">Centro de acopio</a>
                           <a href="{{ route('adminMaterial.index') }}">Material reciclable</a>
                           <a href="{{ route('adminMaterial.index')}}">Cupones</a>
                       </div>
@@ -44,12 +44,12 @@
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
                   @else
-                      <li class="dropdown {{in_array(Route::currentRouteName(), array('adminUser.email','adminUser.password','adminUser.update'))?'active':''}}">
+                      <li class="dropdown {{starts_with(Route::currentRouteName(), 'security')?'active':''}}">
                           <a href="#" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
                           <div class="dropdown-menu">
-                              <a href="{{ route('adminUser.edit') }}">Modificar</a>
-                              <a href="{{ route('adminUser.email') }}">Correo</a>
-                              <a href="{{ route('adminUser.password') }}">Contraseña</a>
+                              <a href="{{ route('security.edit', ['user' => Auth::user()->id]) }}">Modificar</a>
+                              <a href="{{ route('security.email') }}">Correo</a>
+                              <a href="{{ route('security.password') }}">Contraseña</a>
                               <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   @csrf

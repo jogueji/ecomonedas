@@ -27,14 +27,16 @@
               <td>
                 <a href="{{ route('adminUser.detail', ['user' => $user->id]) }}">Detalle</a>
               </td>
-              <td>
-                <a href="{{ route('adminUser.edit', ['user' => $user->id]) }}">Editar</a>
-              </td>
-              <td>
-                <a href="{{ route('adminUser.delete', ['user' => $user->id]) }}"
-                  onClick="confirm('¿Esta seguro que desea eliminarlo?')"
-                  >Eliminar</a>
-              </td>
+              @if($user->rol_id==2)
+                <td>
+                  <a href="{{ route('adminUser.edit', ['user' => $user->id]) }}">Editar</a>
+                </td>
+                <td>
+                  <a href="{{ route('adminUser.delete', ['user' => $user->id]) }}"
+                    onClick="confirm('¿Esta seguro que desea eliminarlo?')"
+                    >Eliminar</a>
+                </td>
+              @endif
             </tr>
           @endforeach
         </tbody>

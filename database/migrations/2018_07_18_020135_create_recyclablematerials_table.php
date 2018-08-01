@@ -31,10 +31,6 @@ class CreateRecyclablematerialsTable extends Migration
      */
     public function down()
     {
-        Schema::table('recyclablematerials',function(Blueprint $table){
-          $table->dropForeign('recyclablematerials_user_id_foreign');
-          $table->dropColumn('user_id');
-        });
         Schema::dropIfExists('recyclablematerials');
     }
 }

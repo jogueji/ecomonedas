@@ -33,12 +33,12 @@ class User extends Authenticatable
       return $this->belongsTo('App\Rol');
     }
 
-    public function wallet() {
-      return $this->hasOne('App\Wallet');
+    public function collectioncenter() {
+      return $this->belongsTo('App\Collectioncenter','collectioncenter_id');
     }
 
-    public function Recyclablematerials(){
-      return $this->hasMany('App\Recyclablematerial');
+    public function wallet() {
+      return $this->hasOne('App\Wallet');
     }
 
     public function hasAccess(array $permissions){

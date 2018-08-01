@@ -42,8 +42,6 @@ class RecyclableMaterialController extends Controller
                       'image' => $imagePath,
                       'color'=>$request->input('color')
                     ]);
-      $user=Auth::user();
-      $material->user()->associate($user);
       $material->save();
       return redirect()->route('adminMaterial.index')->with('message', 'Material reciclable '.$request->input('nombre').' creado');
   }

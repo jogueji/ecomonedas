@@ -8,7 +8,7 @@
         <h4 class="sub-heading">Modifica los datos</h4>
         <h2 class="heading">Editar material reciclable</h2>
       </div>
-      <form action="{{ route('adminMaterial.update') }}" method="post" enctype="multipart/form-data" class="probootstrap-form mb60">
+      <form action="{{ route('adminMaterial.update')}}" method="post" enctype="multipart/form-data" class="probootstrap-form mb60">
         @csrf
         <input type="hidden" name="id" value={{$material->id}}>
         <div class="col-md-8">
@@ -20,7 +20,7 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-                <label for="price">Precio por kilogramo</label>
+                <label for="price">Ecomonedas por kg</label>
                 <input id="price" type="number" value={{$material->price}} step="0.01" min="0" class="form-control" name="price">
             </div>
           </div>
