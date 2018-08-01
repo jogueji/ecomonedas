@@ -37,16 +37,8 @@ class User extends Authenticatable
       return $this->hasOne('App\Wallet');
     }
 
-    public function recyclablematerials(){
+    public function Recyclablematerials(){
       return $this->hasMany('App\Recyclablematerial');
-    }
-
-    public function collectioncenters(){
-      return $this->hasMany('App\Collectioncenter');
-    }
-
-    public function coupons(){
-      return $this->hasMany('App\Coupon');
     }
 
     public function hasAccess(array $permissions){

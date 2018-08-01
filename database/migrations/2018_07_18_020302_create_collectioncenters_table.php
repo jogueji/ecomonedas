@@ -18,11 +18,9 @@ class CreateCollectioncentersTable extends Migration
             $table->string('name',50);
             $table->text('direction');
             $table->unsignedInteger('province_id');
-            $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

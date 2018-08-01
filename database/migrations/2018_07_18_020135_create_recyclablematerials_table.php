@@ -19,9 +19,7 @@ class CreateRecyclablematerialsTable extends Migration
           $table->string('image',200);
           $table->decimal('price',8,2);
           $table->string('color',7);//codigo del color #000000
-          $table->unsignedInteger('user_id');
           $table->softDeletes();
-          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
           $table->timestamps();
         });
     }
