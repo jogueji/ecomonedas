@@ -57,13 +57,19 @@ public function setCreate(Request $request)
     $center->save();
     return redirect()->route('adminCenter.index')->with('message', 'Centro de acopio: '.$request->input('name').' creado');
 }
+public function getEdit($id){
+
+    $center= Collectioncenter::find($id);
+    $provinces=Province::All();
+    return view('admin.collectioncenter.edit',['center'=>$center],['provinces'=>$provinces]);
+}
 
 public function update(Request $request)
 {
     $center=Collectioncenter::find($request->input('id'));
     $this->validate($request, [
-        'name' => 'required|min:3',
-        'direction' => 'required|min:10',
+        'name' => 'required',
+        'direction' => 'required',
         'province'=>'required',
 
     ]);
@@ -82,7 +88,7 @@ public function delete($id){
   $center = Collectioncenter::find($id);
   Storage::disk('public')->delete($center->imagen);
   $center->delete();
-  return redirect()->route('adminMaterial.index')->with('message', 'Material reciclable eliminado');
+  return redirect()->route('adminCenter.index')->with('message', 'Centro de acopio eliminado');
 }
 
 
