@@ -20,6 +20,8 @@ class Collectioncenter extends Model
     return $this->hasMany('App\User');
   }
 
-
+  public function redeems() {
+    return $this->hasMany('App\Redeem');
+  }
 
 }
