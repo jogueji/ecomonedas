@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('titulo', 'Información Del Centro de Acopio')
+@section('title', 'Información De Materiales')
 @section('content')
   <div class="jumbotron">
     <h1 class="display-3">{{$material->name}}</h1>
