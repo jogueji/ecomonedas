@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
-
 Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
 )->name('cc.index');
 
@@ -32,7 +31,7 @@ Route::group(['prefix'=>'public'], function(){
       'as' => 'public.materials',
   ]
   );
-  Route::get('materialDetail/{material}',
+  Route::get('materialDetail',
   [
       'uses' => 'RecyclableMaterialController@detail',
       'as' => 'public.materialDetail',
@@ -62,8 +61,8 @@ Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(
 
   Route::get('edit/{id}',
   [
-    'uses'=>'CollectionCenterController@update',
-    'as'=>'adminCenter.update',
+    'uses'=>'CollectionCenterController@getEdit',
+    'as'=>'adminCenter.edit',
     //'middleware'=>'can:update-vj=vj,vj'
   ]
   );
@@ -87,54 +86,52 @@ Route::group(['prefix'=>'adminUser','middleware'=>'auth'], function(){
   Route::get('/',
   [
       'uses' => 'UserController@getIndex',
-      'as' => 'adminUser.index',
-      'middleware'=>'can:management'
+      'as' => 'adminUser.index'
   ]
   );
 
-  Route::get('create',
-  [
-      'uses' => 'UserController@getCreate',
-      'as' => 'adminUser.create',
-      'middleware'=>'can:management'
-  ]
-  );
+  Route::get('create',function(){
+    return view("admin.user.create");
+  })->name('adminUser.create');
 
   Route::post('create',
   [
       'uses' => 'UserController@setCreate',
-      'as' => 'adminUser.create',
-      'middleware'=>'can:management'
+      'as' => 'adminUser.create'
   ]
   );
 
-  Route::get('edit/{user}',
-  [
-      'uses' => 'UserController@getEdit',
-      'as' => 'adminUser.edit',
-      'middleware'=>'can:edit-user,user'
-  ]
-  );
+  Route::get('edit',function(){
+    return view("admin.user.edit");
+  })->name('adminUser.edit');
 
-  Route::get('editSecure/{user}',
-  [
-      'uses' => 'UserController@getEdit',
-      'as' => 'security.edit',
-      'middleware'=>'can:edit-user,user'
-  ]
-  );
-
-  Route::post('edit/{user}', [
+  Route::post('edit', [
       'uses' => 'UserController@update',
-      'as' => 'adminUser.update',
-      'middleware'=>'can:edit-user,user'
+      'as' => 'adminUser.update'
+  ]);
+
+  Route::get('password',function(){
+    return view("admin.user.password");
+  })->name('adminUser.password');
+
+  Route::post('password',[
+    'uses' => 'UserController@setPassword',
+    'as' => 'adminUser.setPassword'
+  ]);
+
+  Route::get('email',function(){
+    return view("admin.user.email");
+  })->name('adminUser.email');
+
+  Route::post('email',[
+    'uses' => 'UserController@setEmail',
+    'as' => 'adminUser.setEmail'
   ]);
 
   Route::get('delete/{user}',
   [
     'uses'=>'UserController@delete',
-    'as'=>'adminUser.delete',
-    'middleware'=>'can:delete-user,user'
+    'as'=>'adminUser.delete'
   ]
   );
 
@@ -144,24 +141,6 @@ Route::group(['prefix'=>'adminUser','middleware'=>'auth'], function(){
     'as'=>'adminUser.detail'
   ]
   );
-
-  Route::get('password',function(){
-    return view("admin.user.password");
-  })->name('security.password');
-
-  Route::post('password',[
-    'uses' => 'UserController@setPassword',
-    'as' => 'adminUser.setPassword'
-  ]);
-
-  Route::get('email',function(){
-    return view("admin.user.email");
-  })->name('security.email');
-
-  Route::post('email',[
-    'uses' => 'UserController@setEmail',
-    'as' => 'adminUser.setEmail'
-  ]);
 });
 
 Auth::routes();
@@ -203,7 +182,6 @@ Route::group(['prefix'=>'adminMaterial','middleware'=>'can:management'], functio
   );
   Route::get('detail/{material}',
   [
-    //'middleware'=>'guest',
     'uses'=>'RecyclableMaterialController@detail',
     'as'=>'adminMaterial.detail'
   ]

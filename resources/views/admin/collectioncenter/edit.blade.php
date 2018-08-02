@@ -24,21 +24,17 @@
                 <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="" placeholder="Direccion del centro de acopio">{{ old('direction') }}</textarea>
             </div>
           </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-                            <label for="province">Provincia</label>
-
-                            <select id="province" name="province" class="form-control">
-                              {{-- ciclo para crear select --}}
-                              @foreach ($provinces as $prov)
-                              <option value="{{$prov->id}}" class="" name="provinces"
-                                {{($center->province_id===$prov->id) ? ' selected' : ' '}}>
-                               {{$prov->name}}
-                              </option>
-                              @endforeach
-                            </select>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="province">Provincia</label>
+                              <select id="province" name="province" class="form-control" style="-webkit-appearance: menulist;'">
+                                @foreach ($provinces as $prov)
+                                <option value="{{$prov->id}}" {{$center->province_id==$prov->id?'selected':''}}>{{$prov->name}}</option>
+                                @endforeach
+                              </select>
+                          </div>
                         </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
