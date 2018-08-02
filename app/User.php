@@ -41,6 +41,14 @@ class User extends Authenticatable
       return $this->hasOne('App\Wallet');
     }
 
+    public function redeems() {//usuario cliente
+      return $this->hasMany('App\Redeem');
+    }
+
+    /*public function redeems() {//usuario admin
+      return $this->hasMany('App\Redeem');
+    }*/
+
     public function hasAccess(array $permissions){
       return $this->rol->hasAccess($permissions);
     }

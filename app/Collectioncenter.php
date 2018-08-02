@@ -16,8 +16,10 @@ class Collectioncenter extends Model
     return $this->belongsTo('App\Province','province_id');
   }
 
-  public function usuarios() {
+  public function users() {
     return $this->hasMany('App\User');
   }
+
+
 
 }
