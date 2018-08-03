@@ -12,11 +12,11 @@ class Redeem extends Model
   protected $dates=['deleted_at'];
 
   public function userClient() {
-    return $this->belongsTo('App\User','userClient_id');
+    return $this->belongsTo('App\User','userclient_id');
   }
 
   public function userAdmin() {
-    return $this->belongsTo('App\User','userAdmin_id');
+    return $this->belongsTo('App\User','useradmin_id');
   }
 
   public function collectioncenter() {
