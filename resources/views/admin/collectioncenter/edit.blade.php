@@ -21,21 +21,20 @@
           <div class="col-md-4">
             <div class="form-group">
                 <label for="direction">Direccion</label>
-                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="" placeholder="Direccion del centro de acopio">{{ old('direction') }}</textarea>
+                <textarea id="direction" class="form-control" name="direction" cols="50" rows="3" value="" placeholder="Direccion del centro de acopio">{{ $center->direction }}</textarea>
             </div>
           </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="province">Provincia</label>
-                              <select id="province" name="province" class="form-control" style="-webkit-appearance: menulist;'">
-                                @foreach ($provinces as $prov)
-                                <option value="{{$prov->id}}" {{$center->province_id==$prov->id?'selected':''}}>{{$prov->name}}</option>
-                                @endforeach
-                              </select>
-                          </div>
-                        </div>
-
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="province">Provincia</label>
+                <select id="province" name="province" class="form-control" style="-webkit-appearance: menulist;'">
+                  @foreach ($provinces as $prov)
+                  <option value="{{$prov->id}}" {{$center->province_id==$prov->id?'selected':''}}>{{$prov->description}}</option>
+                  @endforeach
+                </select>
+            </div>
           </div>
+
           <div class="col-md-6">
             <div class="form-group">
                 <label for="image">Imagen</label>
@@ -53,5 +52,9 @@
         </div>
       </form>
     </div>
+
+
+
+
   </section>
 @endsection
