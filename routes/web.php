@@ -214,7 +214,7 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
   Route::get('/', [
     'uses'=>'CouponController@getAdminIndex'
   ]
-  )->name('adminCoupon.index');
+  )->name('admin.coupon.index');
 
   Route::get('create',
   [
