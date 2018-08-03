@@ -52,7 +52,7 @@ public function setCreate(Request $request)
                     'imagen' => $imagePath
                   ]);
     $province= Province::find($request->input('province'));
-    $center->provinces()->associate($province);
+    $center->province()->associate($province);
 
     $center->save();
     return redirect()->route('adminCenter.index')->with('message', 'Centro de acopio: '.$request->input('name').' creado');

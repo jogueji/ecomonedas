@@ -209,3 +209,61 @@ Route::group(['prefix'=>'adminMaterial','middleware'=>'can:management'], functio
   ]
   );
 });
+
+Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(){
+  Route::get('/', [
+    'uses'=>'CouponController@getAdminIndex'
+  ]
+  )->name('adminCoupon.index');
+
+  Route::get('create',
+  [
+    'uses'=>'CouponController@getCreate',
+    'as'=>'adminCoupon.create'
+  ]);
+
+  Route::get('edit/{id}',
+  [
+    'uses'=>'CouponController@getEdit',
+    'as'=>'adminCoupon.edit'
+  ]
+  );
+
+  Route::post('create',
+  [
+      'uses' => 'CouponController@setCreate',
+      'as' => 'adminCoupon.create'
+  ]
+  );
+  Route::post('edit', [
+      'uses' => 'CouponController@update',
+      'as' => 'adminCoupon.update'
+  ]);
+  Route::get('delete/{id}',
+  [
+    'uses'=>'CouponController@delete',
+    'as'=>'adminCoupon.delete'
+  ]
+  );
+  Route::get('detail/{id}',
+  [
+    //'middleware'=>'guest',
+    'uses'=>'CouponController@detail',
+    'as'=>'adminCoupon.detail'
+  ]
+  );
+});
+Route::group(['prefix'=>'public'], function(){
+  Route::get('coupons',
+  [
+      'uses' => 'CouponController@getIndex',
+      'as' => 'public.coupons',
+  ]
+  );
+  Route::get('couponDetail/{id}',
+  [
+      'uses' => 'CouponController@detail',
+      'as' => 'public.couponDetail',
+  ]
+  );
+});

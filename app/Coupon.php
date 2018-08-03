@@ -3,8 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Coupon extends Model
 {
-    //nombre descripcion valor imagen
+  use SoftDeletes;
+  protected $fillable=['name','description','cost','image'];
+  protected $dates=['deleted_at'];
+
+
 }
