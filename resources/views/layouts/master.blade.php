@@ -7,6 +7,7 @@
     <meta name="description" content="Free Bootstrap Theme by uicookies.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand|Open+Sans:300,400" rel="stylesheet">
+    <script type="text/javascript" src="{{ URL::to('js/jquery-3.3.1.js') }}"></script>
     <link rel="stylesheet" href="{{asset('css/styles-merged.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
@@ -34,7 +35,7 @@
                           <a href="{{ route('adminUser.index') }}">Usuarios</a>
                           <a href="{{ route('adminCenter.index') }}">Centro de acopio</a>
                           <a href="{{ route('adminMaterial.index') }}">Material reciclable</a>
-                          <a href="{{ route('adminMaterial.index')}}">Cupones</a>
+                          <a href="{{ route('adminCoupon.index')}}">Cupones</a>
                       </div>
                   </li>
                 @endcan
