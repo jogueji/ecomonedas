@@ -4,6 +4,6 @@
   <div class="jumbotron">
     <h1 class="display-3">{{$center->name}}</h1>
       <img src="{{asset('storage/'.$center->imagen)}}" class="img-thumbnail img-fluid" />
-    <p class="lead">{{$center->province->description}}</p>
+    <p class="lead">{{$center->direction}}</p>
 </div>
 @endsection

@@ -16,7 +16,6 @@
                 <div class="text">
                   <h2 class="heading">{{ $center->name}}</h2>
 
-                  <p>{{$center->direction}}</p>
                   <p>{{$center->province->description}}</p>
                   <p><a href="{{ route('cc.detalle',['id' => $center->id]) }}" class="btn btn-primary btn-sm">Detalles</a></p>
                 </div>
