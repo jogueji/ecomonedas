@@ -257,7 +257,7 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
       'uses' => 'CouponController@update',
       'as' => 'adminCoupon.update'
   ]);
-  Route::get('delete/{material}',
+  Route::get('delete/{id}',
   [
     'uses'=>'CouponController@delete',
     'as'=>'adminCoupon.delete'
@@ -268,6 +268,21 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
     //'middleware'=>'guest',
     'uses'=>'CouponController@getCoupon',
     'as'=>'adminCoupon.detail'
+  ]
+  );
+});
+
+Route::group(['prefix'=>'logged'], function(){
+  Route::get('wallet',
+  [
+      'uses' => 'WalletController@getWallet',
+      'as' => 'logged.wallet',
+  ]
+  );
+  Route::get('couponDetail/{id}',
+  [
+      'uses' => 'WalletController@getCoupon',
+      'as' => 'public.couponDetail',
   ]
   );
 });

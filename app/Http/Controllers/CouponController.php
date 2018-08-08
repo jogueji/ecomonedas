@@ -84,7 +84,7 @@ public function delete($id){
   $center = Coupon::find($id);
   Storage::disk('public')->delete($coupon->image);
   $coupon->delete();
-  return redirect()->route('adminCoupon.index')->with('message', 'Centro de acopio eliminado');
+  return redirect()->route('adminCoupon.index')->with('message', 'Cupon canjeable eliminado');
 }
 
 
