@@ -2,19 +2,18 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') - Ecomonedas</title>
-    <meta name="description" content="Free Bootstrap Theme by uicookies.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand|Open+Sans:300,400" rel="stylesheet">
     <script type="text/javascript" src="{{ URL::to('js/jquery-3.3.1.js') }}"></script>
     <link rel="stylesheet" href="{{asset('css/styles-merged.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+
   </head>
 
   <body>
-    <div class="probootstrap-loader"></div>
+    @if(Route::currentRouteName()!='redeem.index')
+      <div class="probootstrap-loader"></div>
+    @endif
 
     <header role="banner" class="probootstrap-header">
       <div class="container">
@@ -39,15 +38,14 @@
                       </div>
                   </li>
                 @endcan
-                @can ('reedem')
-                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Canjear materiales</a></li>
+                @can ('redeem')
+                  <li {{Route::currentRouteName()=='redeem.index'?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjear materiales</a></li>
                 @endcan
                 @can ('buy')
-                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Comprar</a></li>
+                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Billetera</a></li>
                 @endcan
                 <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
-                <li {{starts_with(Route::currentRouteName(), 'public.material')?'active':''}}"><a href="{{ route('public.materials') }}">Materiales reciclables</a></li>
-                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('logged.wallet') }}">Billetera</a></li>
+                <li {{starts_with(Route::currentRouteName(), 'public.material')?'active':''}}><a href="{{ route('public.materials') }}">Materiales reciclables</a></li>
                   @guest
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
@@ -104,12 +102,12 @@
       </div>
     </footer>
 
-    <div class="gototop js-top">
-      <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
-    </div>{{asset('')}}
-    <script src="{{asset('js/scripts.min.js')}}"></script>
-    <script src="{{asset('js/main.min.js')}}"></script>
-    <script src="{{asset('js/custom.js')}}"></script>
-
+    @if(Route::currentRouteName()!='redeem.index')
+      <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+      </div>
+      <script src="{{asset('js/scripts.min.js')}}"></script>
+      <script src="{{asset('js/main.min.js')}}"></script>
+    @endif
   </body>
 </html>

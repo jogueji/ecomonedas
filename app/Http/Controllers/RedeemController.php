@@ -8,6 +8,7 @@ use App\Recyclablematerial;
 use App\User;
 use Auth;
 use App\Redeem;
+use App\Wallet;
 use App\Detailredemption;
 use Illuminate\Session\Store;
 
@@ -20,6 +21,9 @@ class RedeemController extends Controller
     $materials=Recyclablematerial::all();
     $users=User::all();
     //$users=User::where('rol_id', 3)->orderBy('email','asc');//no cargan los usuarios
+    if(count($users)==0){
+      return redirect()->route('index')->with('message', 'No existen usuarios');
+    }
     if(count($materials)==0){
       return redirect()->route('index')->with('message', 'No existen materiales');
     }
@@ -29,7 +33,7 @@ class RedeemController extends Controller
   public function addDetail(Store $session){
     $details= $session->get('details');
     $id=$session->get('id')+1;
-    array_push($details, $id);
+    $details->push($id);
     $materials=Recyclablematerial::all();
     $session->put('details', $details);
     $session->put('id', $id);
@@ -38,7 +42,7 @@ class RedeemController extends Controller
 
   public function deleteDetail($id, Store $session){
     $details= $session->get('details');
-    array_pull($details,$id);
+    $details->pull($id);
     $session->put('details', $details);
     return response()->json($id);
   }
@@ -77,7 +81,7 @@ class RedeemController extends Controller
       $kg=$request[$value];
       if($list->where('recyclablematerial_id',$material->id)->first()==null){
         $list->push(new Detailredemption([
-          'subtotal'=>$kg*$material->price,
+          'subtotal'=>$kg*($material->price),
           'kilograms'=>$kg
         ]));
         $list->last()->recyclablematerial()->associate($material);
@@ -91,8 +95,10 @@ class RedeemController extends Controller
       }
       $redeem->total+=$list->last()->subtotal;
     }
-
     $redeem->save();//guarda el nuevo total
+    $wallet=Wallet::where('user_id',$redeem->userclient_id)->first();
+    $wallet->totaleco=$redeem->total;
+    $wallet->save();
     return redirect()->route('index')->with('message', 'Materiales canjeados');
   }
 

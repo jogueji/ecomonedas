@@ -25,6 +25,13 @@ Route::get('collectioncenter/{id}',
 ]
 );
 
+Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
+  Route::get('/', 'RedeemController@getIndex')->name('redeem.index');
+  Route::get('detail','RedeemController@addDetail')->name('redeem.add');
+  Route::get('delete/{id}','RedeemController@deleteDetail')->name('redeem.delete');
+  Route::post('create','RedeemController@redeem')->name('redeem.create');
+});
+
 Route::group(['prefix'=>'public'], function(){
   Route::get('materials',
   [
