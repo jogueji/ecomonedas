@@ -77,7 +77,7 @@ class RedeemController extends Controller
     foreach($details as $detail){
       $value='material'.intval($detail);
       $material=Recyclablematerial::find($request[$value]);
-      $value='material'.intval($detail);
+      $value='kg'.intval($detail);
       $kg=$request[$value];
       if($list->where('recyclablematerial_id',$material->id)->first()==null){
         $list->push(new Detailredemption([
