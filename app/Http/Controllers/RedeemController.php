@@ -90,14 +90,14 @@ class RedeemController extends Controller
       }
       else{
         $list->where('recyclablematerial_id',$material->id)->first()->kilograms+=$kg;
-        $list->where('recyclablematerial_id',$material->id)->first()->total+=$kg*$material;
+        $list->where('recyclablematerial_id',$material->id)->first()->subtotal+=$kg*$material->price;
         $list->where('recyclablematerial_id',$material->id)->first()->save();
       }
       $redeem->total+=$list->last()->subtotal;
     }
     $redeem->save();//guarda el nuevo total
     $wallet=Wallet::where('user_id',$redeem->userclient_id)->first();
-    $wallet->totaleco=$redeem->total;
+    $wallet->totaleco+=$redeem->total;
     $wallet->save();
     return redirect()->route('index')->with('message', 'Materiales canjeados');
   }
