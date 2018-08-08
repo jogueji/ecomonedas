@@ -47,7 +47,8 @@
                 @endcan
                 <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.material')?'active':''}}"><a href="{{ route('public.materials') }}">Materiales reciclables</a></li>
-                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('logged.wallet') }}">Billetera</a></li>
+                <li {{Route::currentRouteName()=='logged.wallet'?"class=active":''}}><a href="{{ route('logged.wallet') }}">Billetera</a></li>
+                <li {{Route::currentRouteName()=='public.coupons'?"class=active":''}}><a href="{{ route('public.coupons') }}">Cupones</a></li>
                   @guest
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
