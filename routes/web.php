@@ -243,7 +243,7 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
     'as'=>'adminCoupon.create'
   ]);
 
-  Route::get('edit/{material}',
+  Route::get('edit/{id}',
   [
     'uses'=>'CouponController@getEdit',
     'as'=>'adminCoupon.edit'
@@ -276,6 +276,8 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
 });
 
 Route::group(['prefix'=>'logged'], function(){
+
+
   Route::get('wallet',
   [
       'uses' => 'WalletController@getWallet',
@@ -289,3 +291,10 @@ Route::group(['prefix'=>'logged'], function(){
   ]
   );
 });
+
+Route::get('downloadPDF/{id}',
+[
+  'uses'=>'WalletController@PDFDownload',
+  'as'=>'admin.wallet.pdf'
+]
+);
