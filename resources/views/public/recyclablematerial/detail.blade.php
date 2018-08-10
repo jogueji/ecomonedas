@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Detalle usuario')
+@section('title', 'Detalle material')
 @section('content')
   <section class="probootstrap-section">
     <div class="container">

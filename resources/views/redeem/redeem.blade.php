@@ -4,7 +4,7 @@
   <section class="probootstrap-section">
     @include('partials.errors')
     <div class="container">
-      <div class="probootstrap-section-heading text-center mb50">
+      <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
         <h2 class="heading">Canjeo de materiales</h2>
       </div>
       <form action="{{ route('redeem.create') }}" method="post" class="probootstrap-form mb60">
@@ -74,5 +74,6 @@
 
     </div>
   </section>
+
   <script type="text/javascript" src="{{ URL::to('js/redeem.js') }}"></script>
 @endsection

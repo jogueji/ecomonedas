@@ -19,15 +19,14 @@ class RedeemController extends Controller
     $session->put('id',1);
     $session->put('details',$details);//guarda en el arreglo en session
     $materials=Recyclablematerial::all();
-    $users=User::all();
-    //$users=User::where('rol_id', 3)->orderBy('email','asc');//no cargan los usuarios
+    $users=User::where('rol_id', 3)->orderBy('email','asc')->get();
     if(count($users)==0){
       return redirect()->route('index')->with('message', 'No existen usuarios');
     }
     if(count($materials)==0){
       return redirect()->route('index')->with('message', 'No existen materiales');
     }
-    return view('redeem',['users'=>$users,'materials'=>$materials,]);
+    return view('redeem.redeem',['users'=>$users,'materials'=>$materials,]);
   }
 
   public function addDetail(Store $session){

@@ -4,17 +4,13 @@
     <meta charset="utf-8">
     <title>@yield('title') - Ecomonedas</title>
     <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand|Open+Sans:300,400" rel="stylesheet">
-    <script type="text/javascript" src="{{ URL::to('js/jquery-3.3.1.js') }}"></script>
     <link rel="stylesheet" href="{{asset('css/styles-merged.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
-
+    <script type="text/javascript" src="{{ URL::to('js/jquery-3.3.1.js') }}"></script>
   </head>
 
   <body>
-    @if(Route::currentRouteName()!='redeem.index')
-      <div class="probootstrap-loader"></div>
-    @endif
-
+    <div class="probootstrap-loader"></div>
     <header role="banner" class="probootstrap-header">
       <div class="container">
         <div class="col-md-1" align="center">
@@ -31,21 +27,22 @@
                   <li class="dropdown {{starts_with(Route::currentRouteName(), 'admin')?'active':''}}">
                       <a href="#" data-toggle="dropdown">Gestión<span class="caret"></span></a>
                       <div class="dropdown-menu">
-                          <a href="{{ route('adminUser.index') }}">Usuarios</a>
-                          <a href="{{ route('adminCenter.index') }}">Centro de acopio</a>
-                          <a href="{{ route('adminMaterial.index') }}">Material reciclable</a>
-                          <a href="{{ route('adminCoupon.index')}}">Cupones</a>
+                          <a href="{{ route('adminUser.index') }}" style="border:0px" >Usuarios</a>
+                          <a href="{{ route('adminCenter.index') }}" style="border:0px">Centros</a>
+                          <a href="{{ route('adminMaterial.index') }}" style="border:0px">Materiales</a>
+                          <a href="{{ route('adminCoupon.index')}}" style="border:0px">Cupones</a>
                       </div>
                   </li>
                 @endcan
                 @can ('redeem')
-                  <li {{Route::currentRouteName()=='redeem.index'?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjear materiales</a></li>
+                  <li {{Route::currentRouteName()=='redeem.index'?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjeo materiales</a></li>
                 @endcan
                 @can ('buy')
                   <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Billetera</a></li>
                 @endcan
-                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros de Acopio</a></li>
-                <li {{starts_with(Route::currentRouteName(), 'public.material')?'active':''}}><a href="{{ route('public.materials') }}">Materiales reciclables</a></li>
+                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
+                <li {{starts_with(Route::currentRouteName(), 'public.material')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>
+                <li {{starts_with(Route::currentRouteName(), 'public.coupons')?'class=active':''}}><a href="{{ route('public.coupons') }}">Cupones</a></li>
                   @guest
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
@@ -53,10 +50,10 @@
                       <li class="dropdown {{starts_with(Route::currentRouteName(), 'security')?'active':''}}">
                           <a href="#" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
                           <div class="dropdown-menu">
-                              <a href="{{ route('security.edit', ['user' => Auth::user()->id]) }}">Modificar</a>
-                              <a href="{{ route('security.email') }}">Correo</a>
-                              <a href="{{ route('security.password') }}">Contraseña</a>
-                              <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                              <a href="{{ route('security.edit', ['user' => Auth::user()->id])}}" style="border:0px">Modificar</a>
+                              <a href="{{ route('security.email') }}" style="border:0px">Correo</a>
+                              <a href="{{ route('security.password') }}" style="border:0px">Contraseña</a>
+                              <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="border:0px">Cerrar sesión</a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   @csrf
                               </form>
@@ -101,13 +98,10 @@
           </div>
       </div>
     </footer>
-
-    @if(Route::currentRouteName()!='redeem.index')
       <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
       </div>
-      <script src="{{asset('js/scripts.min.js')}}"></script>
-      <script src="{{asset('js/main.min.js')}}"></script>
-    @endif
+    <script src="{{asset('js/scripts.min.js')}}"></script>
+    <script src="{{asset('js/main.min.js')}}"></script>
   </body>
 </html>

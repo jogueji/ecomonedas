@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('redeem', function($user){
-          return $user -> hasAccess(['redeem']);//valor enabled
+          return $user -> hasAccess(['redeem']);// and Collectioncenter::where('id',$user->collectioncenter_id)->first()->enabled;
         });
 
         Gate::define('edit-user', function($user,\App\User $userEdit){
