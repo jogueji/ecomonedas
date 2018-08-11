@@ -16,7 +16,7 @@
                 <h2 class="heading">{{$coupon->name}}</h2>
                 <p>Ecomonedas necesarias: {{$coupon->cost}}</p>
                 <p align="center"><a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Ver detalle</a></p>
-                <p align="center"><a href={{route('client.addCoupon', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Comprar</a></p>
+                <p align="center"><a href={{route('client.addCoupon', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Añadir al carrito</a></p>
               </div>
             </div>
           </div>

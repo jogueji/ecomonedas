@@ -278,7 +278,7 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
   ]
   );
 
-  Route::get('addCoupon',
+  Route::get('addCoupon/{id}',
   [
       'uses' => 'CartController@addCoupon',
       'as' => 'client.addCoupon',

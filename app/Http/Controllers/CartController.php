@@ -15,10 +15,14 @@ class CartController extends Controller
     $user=Auth::user();
     $wallet = Wallet::where('user_id',$user->id)->first();
     $cart=collect(json_decode($wallet->cart,true));
-    /*if($wallet->cart!=null){
-        $cart=$wallet->cart->toJson();
-    }*/
-
     return view('client.cart',['cart'=>$cart]);
+  }
+
+  public function addCoupon($id){
+    $user=Auth::user();
+    $wallet = Wallet::where('user_id',$user->id)->first();
+    $cart=collect(json_decode($wallet->cart,true));
+    $cart->push(Coupon::find($id));
+    return view('public.cart',['cart'=>$cart]);
   }
 }
