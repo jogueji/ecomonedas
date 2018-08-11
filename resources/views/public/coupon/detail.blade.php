@@ -1,10 +1,25 @@
 @extends('layouts.master')
-@section('title', 'Información Del Cupon Canjeable')
+@section('title', 'Detalle Cupon')
 @section('content')
-  <div class="jumbotron">
-    <h1 class="display-3">{{$coupon->name}}</h1>
-      <img src="{{asset('storage/'.$coupon->image)}}" class="img-responsive"/>
-      <p class="lead">{{$coupon->description}}</p>
-    <p class="lead">Ecomonedas necesarias:  {{$coupon->cost}}</p>
-</div>
+  <section class="probootstrap-section">
+    <div class="container">
+      <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
+        <h4 class="sub-heading">Información</h4>
+        <h2 class="heading">Detalle del cupon</h2>
+      </div>
+      <div class="col-md-8 probootstrap-animate probootstrap-section-heading">
+          <div class="col-md-12">
+            <p class="sub-heading" style="margin-bottom:0px">Nombre</p>
+            <h4 class="heading">{{$coupon->name}}</h4>
+            <p class="sub-heading" style="margin-bottom:0px">Descripcion</p>
+            <h4 class="heading">{{$coupon->description}}</h4>
+            <p class="sub-heading" style="margin-bottom:0px">Ecomonedas</p>
+            <h4 class="heading">{{$coupon->price}}</h4>
+          </div>
+      </div>
+      <div class="col-md-4" align="center">
+        <img src="{{asset('storage/'.$coupon->image)}}" height="100%" width="100%">
+      </div>
+    </div>
+  </section>
 @endsection

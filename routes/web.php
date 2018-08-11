@@ -12,20 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.welcome');
 })->name('index');
 
-Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
-)->name('cc.index');
-
-Route::get('collectioncenter/{id}',
-[
-  'uses'=>'CollectioncenterController@getCenter',
-  'as'=>'cc.detalle'
-]
-);
+Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
+  Route::get('/', 'RedeemController@getIndex')->name('redeem.index');
+  Route::get('detail','RedeemController@addDetail')->name('redeem.add');
+  Route::get('delete/{id}','RedeemController@deleteDetail')->name('redeem.delete');
+  Route::post('create','RedeemController@redeem')->name('redeem.create');
+});
 
 Route::group(['prefix'=>'public'], function(){
+
+  Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
+  )->name('cc.index');
+
+  Route::get('collectioncenter/{id}',
+  [
+    'uses'=>'CollectioncenterController@getCenter',
+    'as'=>'cc.detalle'
+  ]
+  );
+
   Route::get('materials',
   [
       'uses' => 'RecyclableMaterialController@getList',
@@ -36,6 +44,19 @@ Route::group(['prefix'=>'public'], function(){
   [
       'uses' => 'RecyclableMaterialController@detail',
       'as' => 'public.materialDetail',
+  ]
+  );
+
+  Route::get('coupons',
+  [
+      'uses' => 'CouponController@getIndex',
+      'as' => 'public.coupons',
+  ]
+  );
+  Route::get('couponDetail/{id}',
+  [
+      'uses' => 'CouponController@getCoupon',
+      'as' => 'public.couponDetail',
   ]
   );
 });
@@ -209,24 +230,6 @@ Route::group(['prefix'=>'adminMaterial','middleware'=>'can:management'], functio
   ]
   );
 });
-
-Route::group(['prefix'=>'public'], function(){
-  Route::get('coupons',
-  [
-      'uses' => 'CouponController@getIndex',
-      'as' => 'public.coupons',
-  ]
-  );
-  Route::get('couponDetail/{id}',
-  [
-      'uses' => 'CouponController@getCoupon',
-      'as' => 'public.couponDetail',
-  ]
-  );
-});
-
-
-
 
 Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(){
   Route::get('/', [

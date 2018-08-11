@@ -1,83 +1,47 @@
 // Funcion crear mostrar
 $(document).on('click','.create-modal', function() {
-    $('#create').modal('show');
-    $('.form-horizontal').show();
-    //Quitar errores
-    $('.alert-danger').empty();
-    $('.alert-danger').hide();
-  });
-  // Funcion crear
-  $("#add").click(function() {
-    $.ajax({
-      type: 'post',
-      url: 'plataforma/store/',
-      data: {
-        '_token':$('input[name=_token]').val(),
-        'nombre':$('input[name=nombre]').val()
-      },
-      success: function(data){
-        if ((data.errors)) {
-          $.each(data.errors,function(key,value){
-            $('.alert-danger').show();
-            $('.alert-danger').append('<p>'+value+'</p>');
-          });
-
-        }else{
-          $('#table').append("<tr class='plataforma"+data.id+"'>"+
-            "<td>"+data.nombre+"</td>"+
-            "<td>"+data.created_at+"</td>"+
-            "<td>"+
-            "<a href='#' class='show-modal btn btn-info' data-id='"+data.id+"' data-nombre='"+data.nombre+"' >"+
-            "<i class='far fa-eye'></i>"+
+  $.ajax({
+    type: 'get',
+    url: 'redeem/detail',
+    success: function(data){
+      var materials="";
+      $.each(data.materials,function(key,material){
+        materials=materials+"<option value='"+material.id+"'>"+material.name+"</option>";
+      });
+      $('#list').append(
+        "<div class='col-md-12 detail"+data.id+"'>"+
+          "<div class='col-md-4'>"+
+            "<div class='form-group'>"+
+              "<label for='material"+data.id+"'>Material</label>"+
+              "<select id='material"+data.id+"' name='material"+data.id+"' class='form-control' style='-webkit-appearance: menulist;'>"+
+                materials+
+              "</select>"+
+            "</div>"+
+          "</div>"+
+        "<div class='col-md-4'>"+
+          "<div class='form-group'>"+
+              "<label for='kg"+data.id+"'>Kilogramos</label>"+
+              "<input id='kg"+data.id+"' type='number' placeholder='0.0' step='0.01' min='0' class='form-control' name='kg"+data.id+"'>"+
+          "</div>"+
+        "</div>"+
+        "<div class='col-md-4'>"+
+          "<br>"+
+          "<div class='form-group'>"+
+            "<a href='#' data-id='"+data.id+"' style='border: 1px solid red;background-color:red;' class='btn btn-primary delete-modal'>"+
+              "Eliminar material"+
             "</a>"+
-            "<a href='#' class='edit-modal btn btn-warning' data-id='"+data.id+"' data-nombre='"+data.nombre+"' >"+
-            "<i class='far fa-edit'></i>"+
-            "</a>"+
-            "</td>"+
-          "</tr>");
-        }
-      },
+          "</div>"+
+        "</div></div>");
+      }
     });
-    $('#nombre').val('');
-  });
-
-// Funcion editar Mostrar
-$(document).on('click', '.edit-modal', function() {
-$('.form-horizontal').show();
-$('#fid').val($(this).data('id'));
-$('#n').val($(this).data('nombre'));
-$('#myModal').modal('show');
 });
-// Funcion editar
-$('.modal-footer').on('click', '.edit', function() {
-$.ajax({
-  type: 'post',
-  url: 'plataforma/update/',
-  data: {
-    '_token':$('input[name=_token]').val(),
-    'id':$('#fid').val(),
-    'nombre':$('#n').val()
-  },
-success: function(data) {
-  $('.plataforma'+data.id).replaceWith(" "+
-    "<td>"+data.nombre+"</td>"+
-    "<td>"+data.created_at+"</td>"+
-    "<td>"+
-    "<a href='#' class='show-modal btn btn-info' data-id='"+data.id+"' data-nombre='"+data.nombre+"' >"+
-    "<i class='far fa-eye'></i>"+
-    "</a>"+
-    "<a href='#' class='edit-modal btn btn-warning' data-id='"+data.id+"' data-nombre='"+data.nombre+"' >"+
-    "<i class='far fa-edit'></i>"+
-    "</a>"+
-    "</td>"+
-  "</tr>");
+
+$(document).on('click','.delete-modal', function() {
+  $.ajax({
+    type: 'get',
+    url: 'redeem/delete/'+$(this).data('id'),
+    success: function(data) {
+      $('.detail'+data).replaceWith();
     }
   });
 });
-
-  // Funcion detalle
-  $(document).on('click', '.show-modal', function() {
-  $('#show').modal('show');
-  $('#i').text($(this).data('id'));
-  $('#nom').text($(this).data('nombre'));
-  });
