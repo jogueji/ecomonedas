@@ -261,7 +261,7 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
   );
 });
 
-Route::group(['prefix'=>'logged','middleware'=>'can:buy'], function(){
+Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
 
 
   Route::get('wallet',
@@ -275,6 +275,13 @@ Route::group(['prefix'=>'logged','middleware'=>'can:buy'], function(){
   [
       'uses' => 'CartController@getCart',
       'as' => 'client.cart',
+  ]
+  );
+
+  Route::get('addCoupon',
+  [
+      'uses' => 'CartController@addCoupon',
+      'as' => 'client.addCoupon',
   ]
   );
 

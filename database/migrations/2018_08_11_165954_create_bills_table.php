@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWalletsTable extends Migration
+class CreateBillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateWalletsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('bills', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('totaleco',8,2);
-            $table->decimal('totalcoupon',8,2);
-            $table->decimal('total',8,2);
-            $table->text('cart')->nullable();
-            $table->unsignedInteger('user_id');
-            $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->decimal('total',8,2);
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,10 +29,10 @@ class CreateWalletsTable extends Migration
      */
     public function down()
     {
-        Schema::table('wallets',function(Blueprint $table){
-            $table->dropForeign('wallets_user_id_foreign');
-            $table->dropColumn('user_id');
-        });
-        Schema::dropIfExists('wallets');
+      Schema::table('bills',function(Blueprint $table){
+        $table->dropForeign('bills_user_id_foreign');
+        $table->dropColumn('user_id');
+      });
+        Schema::dropIfExists('bills');
     }
 }

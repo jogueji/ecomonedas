@@ -26,29 +26,29 @@
           <div id="list">
             <div class="col-md-12 detail1">
               <div class="col-md-4">
-              <div class="form-group">
-                  <label for="material1">Material</label>
-                  <select id="material1" name="material1" class="form-control" style="-webkit-appearance: menulist;">
-                    @foreach ($materials as $material)
-                    <option value="{{$material->id}}" {{old('material1')==$material->id?'selected':''}}>{{$material->name}}</option>
-                    @endforeach
-                  </select>
+                <div class="form-group">
+                    <label for="material1">Material</label>
+                    <select id="material1" name="material1" class="form-control" style="-webkit-appearance: menulist;">
+                      @foreach ($materials as $material)
+                      <option value="{{$material->id}}" {{old('material1')==$material->id?'selected':''}}>{{$material->name}}</option>
+                      @endforeach
+                    </select>
+                </div>
               </div>
-            </div>
               <div class="col-md-4">
-              <div class="form-group">
-                  <label for="kg1">Kilogramos</label>
-                  <input id="kg1" type="number" placeholder="0.0" step="0.01" min="0" class="form-control" name="kg1" value="{{ old('kg1') }}">
+                <div class="form-group">
+                    <label for="kg1">Kilogramos</label>
+                    <input id="kg1" type="number" placeholder="0.0" step="0.01" min="0" class="form-control" name="kg1" value="{{ old('kg1') }}">
+                </div>
               </div>
-            </div>
               <div class="col-md-4">
-              <br>
-              <div class="form-group">
-                <a href="#" data-id="1" style="border: 1px solid red;background-color:red;" class="btn btn-primary delete-modal">
-                  Eliminar material
-                </a>
+                <br>
+                <div class="form-group">
+                  <a href="#" data-id="1" style="border: 1px solid red;background-color:red;" class="btn btn-primary delete-modal">
+                    Eliminar material
+                  </a>
+                </div>
               </div>
-            </div>
             </div>
           </div>
           <div class="col-md-12">
