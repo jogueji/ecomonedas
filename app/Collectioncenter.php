@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Collectioncenter extends Model
 {
   use SoftDeletes;
-  protected $fillable=['name','direction','imagen'];
+  protected $fillable=['name','direction','imagen','enabled'];
   protected $dates=['deleted_at'];
 
   public function province() {

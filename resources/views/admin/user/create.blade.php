@@ -62,7 +62,7 @@
           <div class="col-md-6">
             <div class="form-group">
                 <label for="center">Centro de acopio</label>
-                <select id="center" name="center" class="form-control" style="-webkit-appearance: menulist;'">
+                <select id="center" name="center" class="form-control" style="-webkit-appearance: menulist;">
                   @foreach ($centers as $center)
                   <option value="{{$center->id}}" {{old('center')==$center->id?'selected':''}}>{{$center->name}}</option>
                   @endforeach

@@ -137,7 +137,7 @@ width:150px; height:150px;
     </table>
   </main>
   <footer>
-    Usuario: {{ Auth::user()->name}}
+    Usuario: {{Auth::user()->name}}
   </footer>
   </body>
 </html>

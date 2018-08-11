@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="form-group">
+            <div class="form-group" style="-webkit-appearance: menulist;">
                               <label for="province">Provincia</label>
                               <select id="province" name="province" class="form-control">
                                 {{-- ciclo para crear select --}}
@@ -38,6 +38,12 @@
             <div class="form-group">
                 <label for="imagen">Imagen</label>
                 <input id="imagen" type="file" class="form-control" name="imagen" value="{{ old('imagen') }}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="enabled">Habilitado</label></br>
+                <input class="form" type="checkbox" checked="true" name="enabled" />
             </div>
           </div>
           <div class="col-md-12" align="center">
