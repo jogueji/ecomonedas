@@ -15,7 +15,8 @@
               <div class="text">
                 <h2 class="heading">{{$coupon->name}}</h2>
                 <p>Ecomonedas necesarias: {{$coupon->cost}}</p>
-                <p><a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Ver detalle</a></p>
+                <p><a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Ver detalle</a>
+                  <a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Comprar</a></p>
               </div>
             </div>
           </div>

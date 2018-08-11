@@ -13,8 +13,8 @@
             <h4 class="heading">{{$coupon->name}}</h4>
             <p class="sub-heading" style="margin-bottom:0px">Descripcion</p>
             <h4 class="heading">{{$coupon->description}}</h4>
-            <p class="sub-heading" style="margin-bottom:0px">Ecomonedas</p>
-            <h4 class="heading">{{$coupon->price}}</h4>
+            <p class="sub-heading" style="margin-bottom:0px">Ecomonedas necesarias</p>
+            <h4 class="heading">{{$coupon->cost}}</h4>
           </div>
       </div>
       <div class="col-md-4" align="center">

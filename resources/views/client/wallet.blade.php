@@ -39,6 +39,7 @@
           <div class="form-group">
           </br></br></br></br><label  class="btn btn-primary">Cupones canjeados</label>
           </div>
+          <a class="btn btn-primary" href="{{ route('client.wallet.pdf',$wallet->id)}}">Descargar PDF</a>
         </div>
       </div>
       <div class="col-md-4" align="center">

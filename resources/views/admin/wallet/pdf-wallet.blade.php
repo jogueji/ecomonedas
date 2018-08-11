@@ -137,11 +137,7 @@ width:150px; height:150px;
     </table>
   </main>
   <footer>
-<<<<<<< HEAD
     Usuario: {{Auth::user()->name}}
-=======
-    Usuario: {{ Auth::user()->name}}
->>>>>>> master
   </footer>
   </body>
 </html>

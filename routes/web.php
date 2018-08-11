@@ -222,13 +222,6 @@ Route::group(['prefix'=>'adminMaterial','middleware'=>'can:management'], functio
     'as'=>'adminMaterial.delete'
   ]
   );
-  Route::get('detail/{material}',
-  [
-    //'middleware'=>'guest',
-    'uses'=>'RecyclableMaterialController@detail',
-    'as'=>'adminMaterial.detail'
-  ]
-  );
 });
 
 Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(){
@@ -266,16 +259,9 @@ Route::group(['prefix'=>'adminCoupon','middleware'=>'can:management'], function(
     'as'=>'adminCoupon.delete'
   ]
   );
-  Route::get('detail/{id}',
-  [
-    //'middleware'=>'guest',
-    'uses'=>'CouponController@getCoupon',
-    'as'=>'adminCoupon.detail'
-  ]
-  );
 });
 
-Route::group(['prefix'=>'logged'], function(){
+Route::group(['prefix'=>'logged','middleware'=>'can:buy'], function(){
 
 
   Route::get('wallet',
@@ -284,17 +270,12 @@ Route::group(['prefix'=>'logged'], function(){
       'as' => 'client.wallet',
   ]
   );
-  Route::get('couponDetail/{id}',
+
+  Route::get('downloadPDF/{id}',
   [
-      'uses' => 'WalletController@getCoupon',
-      'as' => 'public.couponDetail',
+    'uses'=>'WalletController@PDFDownload',
+    'as'=>'client.wallet.pdf'
   ]
   );
-});
 
-Route::get('downloadPDF/{id}',
-[
-  'uses'=>'WalletController@PDFDownload',
-  'as'=>'admin.wallet.pdf'
-]
-);
+});
