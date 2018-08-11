@@ -14,13 +14,13 @@ class CollectionCenterController extends Controller
 {
   public function getIndex(){
   $centers = Collectioncenter::orderBy('created_at', 'desc')->paginate(4);
-  return view('collectioncenter.index',['centers'=>$centers]);
+  return view('public.collectioncenter.index',['centers'=>$centers]);
 }
 
 public function getCenter($id)
 {
     $center = Collectioncenter::where('id', $id)->first();
-    return view('collectioncenter.detalle', ['center' => $center]);
+    return view('public.collectioncenter.detalle', ['center' => $center]);
 }
 public function getAdminIndex(/*Store $session*/){
   $centers=Collectioncenter::orderBy('name','asc');

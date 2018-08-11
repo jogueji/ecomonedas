@@ -15,6 +15,8 @@
             <h4 class="heading">{{$center->province->description}}</h4>
             <p class="sub-heading" style="margin-bottom:0px">Dirección</p>
             <h4 class="heading">{{$center->direction}}</h4>
+            <p class="sub-heading" style="margin-bottom:0px">Estado</p>
+            {{--<h4 class="heading">{{()?'H':'Desh'."abilitado"}}</h4>--}}
           </div>
       </div>
       <div class="col-md-4" align="center">

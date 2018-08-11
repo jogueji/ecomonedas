@@ -40,7 +40,7 @@
                 @can ('buy')
                   <li {{Route::currentRouteName()=='client.wallet'?"class=active":''}}><a href="{{ route('client.wallet') }}">Billetera</a></li>
                 @endcan
-                <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
+                <li {{starts_with(Route::currentRouteName(),'cc')?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.material')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.coupons')?'class=active':''}}><a href="{{ route('public.coupons') }}">Cupones</a></li>
                   @guest
