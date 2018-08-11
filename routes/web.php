@@ -271,6 +271,13 @@ Route::group(['prefix'=>'logged','middleware'=>'can:buy'], function(){
   ]
   );
 
+  Route::get('cart',
+  [
+      'uses' => 'CartController@getCart',
+      'as' => 'client.cart',
+  ]
+  );
+
   Route::get('downloadPDF/{id}',
   [
     'uses'=>'WalletController@PDFDownload',
