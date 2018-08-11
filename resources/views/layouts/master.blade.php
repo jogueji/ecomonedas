@@ -38,7 +38,7 @@
                   <li {{Route::currentRouteName()=='redeem.index'?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjeo materiales</a></li>
                 @endcan
                 @can ('buy')
-                  <li {{Route::currentRouteName()=='index'?"class=active":''}}><a href="{{ route('index') }}">Billetera</a></li>
+                  <li {{Route::currentRouteName()=='client.wallet'?"class=active":''}}><a href="{{ route('client.wallet') }}">Billetera</a></li>
                 @endcan
                 <li {{Route::currentRouteName()=='cc.index'?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.material')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>

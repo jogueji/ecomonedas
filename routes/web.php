@@ -281,7 +281,7 @@ Route::group(['prefix'=>'logged'], function(){
   Route::get('wallet',
   [
       'uses' => 'WalletController@getWallet',
-      'as' => 'logged.wallet',
+      'as' => 'client.wallet',
   ]
   );
   Route::get('couponDetail/{id}',

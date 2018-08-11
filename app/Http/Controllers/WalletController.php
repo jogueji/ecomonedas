@@ -15,12 +15,8 @@ class WalletController extends Controller
 {
   public function getWallet(){
   $user=Auth::user();
-<<<<<<< HEAD
   $wallet = Wallet::where('user_id',$user->id)->first();
-=======
-  $wallet = Wallet::where('user_id',$user->id);
->>>>>>> master
-  return view('logged.wallet',['wallet'=>$wallet, 'user'=>$user]);
+  return view('client.wallet',['wallet'=>$wallet, 'user'=>$user]);
 }
 
 
@@ -28,11 +24,7 @@ class WalletController extends Controller
       $wallet = Wallet::find($id);
       $user= Auth::user();
       $pdf=PDF::loadView('admin.wallet.pdf-wallet',compact('wallet'));
-<<<<<<< HEAD
       return $pdf->download('estadoCuentaEcomonedas'.$id.'.pdf',['user'=>$user, 'wallet'=>$wallet]);
-=======
-      return $pdf->download('estadoCuentaEcomonedas'.$id.'.pdf',['user'=>$user]);
->>>>>>> master
 
 
     }
