@@ -5,18 +5,6 @@
     <div class="container">
       <div class="col-md-6">
         <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
-          <h2 class="heading">Ecomonedas generadas por centro de acopio</h2>
-        </div>
-        <div class="col-md-10">
-          <div>
-            <!--Contenedor grafico-->
-            {!! $chart->container() !!}
-        	</div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
           <h2 class="heading">Centros de Acopio</h2>
         </div>
         <div class="row">
@@ -56,6 +44,19 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-6">
+        <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
+          <h2 class="heading">Ecomonedas generadas por centro de acopio</h2>
+        </div>
+        <div class="col-md-10">
+          <div>
+            <!--Contenedor grafico-->
+            {!! $chart->container() !!}
+        	</div>
+        </div>
+      </div>
+
     </div>
   </section>
 <script type="text/javascript" src="{{ URL::to('js/Chart.min.js') }}" ></script>

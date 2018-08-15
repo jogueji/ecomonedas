@@ -16,9 +16,9 @@ class CollectionCenterController extends Controller
 {
   public function getAdminIndex(){
       $chart = new Graficos();
-      $centers = Collectioncenter::orderBy('created_at', 'desc')->get();
+      $centers = Collectioncenter::orderBy('name', 'asc')->get();
       $chart->labels($centers->pluck('name'));
-      $title="Ecomonedas generadas por Centro de Acopio";
+      $title="Ecomonedas generadas";
       $redeems =Redeem::all();
       $totals=[];
       foreach($centers as $item){
