@@ -21,6 +21,7 @@ class CreateDetailredemptionsTable extends Migration
             $table->unsignedInteger('redeem_id');
             $table->foreign('recyclablematerial_id')->references('id')->on('recyclablematerials')->onDelete('cascade');
             $table->foreign('redeem_id')->references('id')->on('redeems')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

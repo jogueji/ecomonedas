@@ -35,7 +35,7 @@
                   </li>
                 @endcan
                 @can ('redeem')
-                  <li {{Route::currentRouteName()=='redeem.index'?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjeo materiales</a></li>
+                  <li {{starts_with(Route::currentRouteName(), 'redeem')?"class=active":''}}><a href="{{ route('redeem.index') }}">Canjeo materiales</a></li>
                 @endcan
                 @can ('buy')
                   <li {{Route::currentRouteName()=='client.wallet'?"class=active":''}}><a href="{{ route('client.wallet') }}">Billetera</a></li>

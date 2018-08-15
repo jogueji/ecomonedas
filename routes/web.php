@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
   Route::get('/', 'RedeemController@getIndex')->name('redeem.index');
-  Route::get('detail','RedeemController@addDetail')->name('redeem.add');
+  Route::get('detail/{id}', 'RedeemController@getDetail')->name('redeem.detail');
+  Route::get('pdf/{id}', 'RedeemController@descargarPDF')->name('redeem.pdf');
+  Route::get('add','RedeemController@addDetail')->name('redeem.add');
   Route::get('delete/{id}','RedeemController@deleteDetail')->name('redeem.delete');
   Route::post('create','RedeemController@redeem')->name('redeem.create');
 });

@@ -7,6 +7,7 @@ use Validator;
 use App\Recyclablematerial;
 use App\User;
 use Auth;
+use PDF;
 use App\Redeem;
 use App\Wallet;
 use App\Detailredemption;
@@ -14,6 +15,12 @@ use Illuminate\Session\Store;
 
 class RedeemController extends Controller
 {
+  public function descargarPDF($id){
+    $redeem = Redeem::find($id);
+    $pdf=PDF::loadView('redeem.redeemPDF',compact('redeem'));
+    return $pdf->download('Factura Canjeo Materiales #'.$id.'.pdf');
+  }
+
   public function getIndex(Store $session){
     $details = collect([1]);
     $session->put('id',1);
@@ -28,7 +35,10 @@ class RedeemController extends Controller
     }
     return view('redeem.redeem',['users'=>$users,'materials'=>$materials,]);
   }
-
+  public function getDetail($id){
+    $redeem=Redeem::find($id);
+    return view('redeem.redeemDetail',['redeem'=>$redeem]);
+  }
   public function addDetail(Store $session){
     $details= $session->get('details');
     $id=$session->get('id')+1;
@@ -98,7 +108,7 @@ class RedeemController extends Controller
     $wallet=Wallet::where('user_id',$redeem->userclient_id)->first();
     $wallet->totaleco+=$redeem->total;
     $wallet->save();
-    return redirect()->route('index')->with('message', 'Materiales canjeados');
+    return redirect()->route('redeem.detail',['id' => $redeem->id])->with('message', 'Materiales canjeados');
   }
 
 }
