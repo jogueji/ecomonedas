@@ -18,11 +18,32 @@ class CartController extends Controller
     return view('client.cart',['cart'=>$cart]);
   }
 
-  public function addCoupon($id){
+  public function addCoupon($id){//recibir la cantidad?//antes de agregar al carrito comprobar cantidades
     $user=Auth::user();
     $wallet = Wallet::where('user_id',$user->id)->first();
     $cart=collect(json_decode($wallet->cart,true));
-    $cart->push(Coupon::find($id));
-    return view('public.cart',['cart'=>$cart]);
+    $coupon=Coupon::find($id);
+    if($cart->where(id,$id)->first()==null){
+        /*if($coupon->stock>=$quantity){
+          $coupon->quantity=$quantity;*/
+        $cart->push($coupon);
+    }
+    else{
+      //$cart->where(id,$id)->first()->quantity+=$quantity;
+    }
+    /*if($cart->where(id,$id)->first()->quantity){//validar que no supere el numero maximo de cantidades
+
+    }*/
+    $wallet->cart=$cart->toJson();
+    return redirect()->route('public.coupon')->with('message', 'Cupon añadido al carrito');
+  }
+
+  public function deleteCoupon($id){
+    $user=Auth::user();
+    $wallet = Wallet::where('user_id',$user->id)->first();
+    $cart=collect(json_decode($wallet->cart,true));
+    $cart->pull($id);
+    $wallet->cart=$cart->toJson();
+    //return redirect()->route('public.coupon')->with('message', 'Cupon añadido al carrito');
   }
 }

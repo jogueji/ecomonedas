@@ -17,7 +17,7 @@ class CreateCollectioncentersTable extends Migration
             $table->increments('id');
             $table->string('name',50);
             $table->text('direction');
-            $table->bit('enabled');
+            $table->boolean('enabled');
             $table->unsignedInteger('province_id');
             $table->timestamps();
             $table->softDeletes();

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+use App\Collectioncenter;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -29,7 +31,11 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('redeem', function($user){
-          return $user -> hasAccess(['redeem']);// and Collectioncenter::where('id',$user->collectioncenter_id)->first()->enabled;
+          if($user -> hasAccess(['redeem'])){
+            if(User::where('id',$user->collectioncenter_id)->exists())
+              return Collectioncenter::find($user->collectioncenter_id)->enabled;
+          }
+          return false;
         });
 
         Gate::define('edit-user', function($user,\App\User $userEdit){

@@ -24,15 +24,15 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="form-group" style="-webkit-appearance: menulist;">
-                              <label for="province">Provincia</label>
-                              <select id="province" name="province" class="form-control">
-                                {{-- ciclo para crear select --}}
-                                @foreach ($provinces as $prov)
-                                <option value="{{$prov->id}}">{{$prov->description}}</option>
-                                @endforeach
-                              </select>
-                          </div>
+            <div class="form-group">
+              <label for="province">Provincia</label>
+                <select id="province" name="province" class="form-control" style="-webkit-appearance: menulist;">
+                  {{-- ciclo para crear select --}}
+                  @foreach ($provinces as $prov)
+                  <option value="{{$prov->id}}">{{$prov->description}}</option>
+                  @endforeach
+                </select>
+            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -42,8 +42,10 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="enabled">Habilitado</label></br>
-                <input class="form" type="checkbox" checked="true" name="enabled" />
+              <div class="col-md-3">
+                <label>Habilitado</label>
+                <input class="form-control" style="-webkit-appearance: checkbox;" type="checkbox" checked name="enabled" />
+              </div>
             </div>
           </div>
           <div class="col-md-12" align="center">

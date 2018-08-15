@@ -22,6 +22,7 @@ class CreateRedeemsTable extends Migration
             $table->foreign('userclient_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('useradmin_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('collectioncenter_id')->references('id')->on('collectioncenters')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

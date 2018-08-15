@@ -34,11 +34,18 @@
                 </select>
             </div>
           </div>
-
           <div class="col-md-6">
             <div class="form-group">
                 <label for="image">Imagen</label>
                 <input id="image" type="file" class="form-control" name="image" accept="image/*" value="{{ old('image') }}">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="col-md-3">
+                <label>Habilitado</label>
+                <input class="form-control" style="-webkit-appearance: checkbox;" type="checkbox" {{$center->enabled=="1"?"checked":""}} name="enabled"/>
+              </div>
             </div>
           </div>
           <div class="col-md-12" align="center">
