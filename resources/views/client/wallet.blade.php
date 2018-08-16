@@ -37,7 +37,30 @@
         <br>
         <div class="col-md-12" align="center">
           <div class="form-group">
-          </br></br></br></br><label  class="btn btn-primary">Cupones canjeados</label>
+          </br></br><label  class="">Canjes realizados</label>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Fecha</th>
+                <th scope="col">Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($coupons as $coupon)
+                <tr>
+                  <th scope="row">{{$coupon->created_at}}</th>
+                  <td>
+                    <a href="{{ route('public.couponDetail', ['id' => $coupon->id]) }}">Detalle</a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-12" align="center">
+          <div class="form-group">
+          </br><label  class="">Cupones comprados</label>
           </div>
           <table class="table table-hover">
             <thead>
