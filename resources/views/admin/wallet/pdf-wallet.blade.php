@@ -146,10 +146,16 @@ width:150px; height:150px;
     @foreach ($redeems as $redeem)
     <tr>
       <td>
-        <b>Ecomonedas disponibles:</b>
+        <b>Factura:</b>
       </td>
       <td>
-        {{$wallet->totaleco}}
+        {{$redeem->id}}
+      </td>
+      <td>
+        <b>Fecha:</b>
+      </td>
+      <td>
+        {{$redeem->created_at}}
       </td>
     </tr>
     @endforeach

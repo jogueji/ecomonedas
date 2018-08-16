@@ -25,6 +25,9 @@ Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
 });
 
 Route::group(['prefix'=>'public'], function(){
+  Route::get('info/', function () {
+      return view('public.info');
+  })->name('public.info');
 
   Route::get('collectioncenter/', 'CollectioncenterController@getIndex'
   )->name('cc.index');

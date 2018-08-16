@@ -43,7 +43,7 @@
             <div class="text">
               <h2 class="heading">Información</h2>
               <p>Acerca de Nosotros</p>
-              <p><a href="#" class="btn btn-primary btn-sm">Ir</a></p>
+              <p><a href="{{ route('public.info') }}" class="btn btn-primary btn-sm">Ir</a></p>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </section>
