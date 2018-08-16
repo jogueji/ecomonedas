@@ -107,6 +107,7 @@ class RedeemController extends Controller
     $redeem->save();//guarda el nuevo total
     $wallet=Wallet::where('user_id',$redeem->userclient_id)->first();
     $wallet->totaleco+=$redeem->total;
+    $wallet->total+=$redeem->total;
     $wallet->save();
     return redirect()->route('redeem.detail',['id' => $redeem->id])->with('message', 'Materiales canjeados');
   }
