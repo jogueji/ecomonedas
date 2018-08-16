@@ -25,6 +25,12 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
+                <label for="stock">Stock</label>
+                <input id="stock" type="number" placeholder="0" step="1" min="0" class="form-control"  name="stock" value="{{ old('stock') }}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
                 <label for="description">Descripción</label>
                   <textarea id="description" class="form-control" name="description" cols="50" rows="3" value="" placeholder="Descripcion del cupón canjeable">{{ old('description') }}</textarea>
             </div>

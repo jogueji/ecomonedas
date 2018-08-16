@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Coupon extends Model
 {
   use SoftDeletes;
-  protected $fillable=['name','description','cost','image'];
+  protected $fillable=['name','description','cost','image','stock',];
   protected $dates=['deleted_at'];
 
 

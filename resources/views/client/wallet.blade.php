@@ -39,6 +39,24 @@
           <div class="form-group">
           </br></br></br></br><label  class="btn btn-primary">Cupones canjeados</label>
           </div>
+          <table class="table table-hover">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Nombre</th>
+                <th scope="col">Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($coupons as $coupon)
+                <tr>
+                  <th scope="row">{{$coupon->name}}</th>
+                  <td>
+                    <a href="{{ route('public.couponDetail', ['id' => $coupon->id]) }}">Detalle</a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
           <a class="btn btn-primary" href="{{ route('client.wallet.pdf',$wallet->id)}}">Descargar PDF</a>
         </div>
       </div>

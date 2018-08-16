@@ -20,16 +20,23 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-                <label for="description">Descripcion</label>
-                <textarea id="description" class="form-control" name="description" cols="50" rows="3" value="{{ $coupon->description }}" placeholder="Descripcion del cupón canjeable">{{ $coupon->description }}</textarea>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
                 <label for="color">Ecomonedas necesarias: </label>
                   <input id="cost" type="number" placeholder="0.0" step="0.01" min="0" class="form-control"  name="cost" value="{{$coupon->cost }}">
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input id="stock" type="number" placeholder="0" step="1" min="0" class="form-control"  name="stock" value="{{ old('stock') }}">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="description">Descripcion</label>
+                <textarea id="description" class="form-control" name="description" cols="50" rows="3" value="{{ $coupon->description }}" placeholder="Descripcion del cupón canjeable">{{ $coupon->description }}</textarea>
+            </div>
+          </div>
+
           <div class="col-md-6">
             <div class="form-group">
                 <label for="image">Imagen</label>

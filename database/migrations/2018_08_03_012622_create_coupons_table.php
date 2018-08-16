@@ -17,7 +17,9 @@ class CreateCouponsTable extends Migration
             $table->increments('id');
             $table->string('name',50);
             $table->text('description');
+            $table->text('image');
             $table->decimal('cost',8,2);
+            $table->unsignedInteger('stock');
             $table->softDeletes();
             $table->timestamps();
         });

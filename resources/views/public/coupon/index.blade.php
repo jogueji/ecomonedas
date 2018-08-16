@@ -11,6 +11,7 @@
         @foreach($coupons as $coupon)
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 probootstrap-animate">
             <div class="media-item">
+              <p align="center" class="">Disponibles: {{$coupon->stock}}</p>
               <figure><img src="{{asset('storage/'.$coupon->image)}}" class="img-responsive"></figure>
               <div class="text">
                 <h2 class="heading">{{$coupon->name}}</h2>

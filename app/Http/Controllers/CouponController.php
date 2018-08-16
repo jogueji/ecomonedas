@@ -12,7 +12,7 @@ use Illuminate\Session\Store;
 class CouponController extends Controller
 {
   public function getIndex(){
-  $coupons = Coupon::orderBy('created_at', 'desc')->paginate(4);
+  $coupons = Coupon::where('stock','>',0)->orderBy('created_at', 'desc')->paginate(4);
   return view('public.coupon.index',['coupons'=>$coupons]);
 }
 
@@ -39,7 +39,8 @@ public function setCreate(Request $request)
         'name' => 'required|min:3',
         'description' => 'required|min:10',
         'image'=> 'required|image',
-        'cost'=>'required'
+        'cost'=>'required',
+        'stock'=>'required|numeric'
     ]);
     $imagePath = $request->file('image')->store('images','public');//guarda la imagen y devuelve la ruta
     /*$image = \Image::make(\Storage::get($imagePath))->resize(320,240)->encode();//recodifica la imagen
@@ -48,7 +49,8 @@ public function setCreate(Request $request)
                     'name' => $request->input('name'),
                     'description' => $request->input('description'),
                     'image' => $imagePath,
-                    'cost'=> $request->input('cost')
+                    'cost'=> $request->input('cost'),
+                    'stock'=> $request->input('stock')
                   ]);
 
     $center->save();
@@ -67,6 +69,7 @@ public function update(Request $request)
         'name' => 'required',
         'description' => 'required',
         'cost'=>'required',
+        'stock'=>'required|numeric'
 
     ]);
     if(!$request->file('image')===null||!$request->file('image')==""){
@@ -76,6 +79,7 @@ public function update(Request $request)
     $coupon->name= $request->input('name');
     $coupon->description=$request->input('description');
     $coupon->cost= $request->input('cost');
+    $coupon->stock= $request->input('stock');
     $coupon->save();
     return redirect()->route('adminCoupon.index')->with('message', 'Cupon canjeable: '.$request->input('name').' editado');
 }
