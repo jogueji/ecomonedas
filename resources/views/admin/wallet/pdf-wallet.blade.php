@@ -135,6 +135,78 @@ width:150px; height:150px;
       </tr>
       </tbody>
     </table>
+    <table>
+      <thead>
+    <thead>
+    <tr>
+      <th>Canjes realizados:</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($redeems as $redeem)
+    <tr>
+      <td>
+        <b>Ecomonedas disponibles:</b>
+      </td>
+      <td>
+        {{$wallet->totaleco}}
+      </td>
+    </tr>
+    @endforeach
+    <tr>
+      <td>
+        <b>Ecomonedas redimidas:</b>
+      </td>
+      <td>
+        {{$wallet->totalcoupon}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Ecomonedas totales:</b>
+      </td>
+      <td>
+      {{$wallet->total}}
+      <br/>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+  <thead>
+  <tr>
+    <th>Cupones comprados:</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <b>Ecomonedas disponibles:</b>
+    </td>
+    <td>
+      {{$wallet->totaleco}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Ecomonedas redimidas:</b>
+    </td>
+    <td>
+      {{$wallet->totalcoupon}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Ecomonedas totales:</b>
+    </td>
+    <td>
+    {{$wallet->total}}
+    <br/>
+    </td>
+  </tr>
+  </tbody>
+</table>
   </main>
   <footer>
     Usuario: {{Auth::user()->name}}

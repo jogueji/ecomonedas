@@ -272,6 +272,12 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
       'as' => 'client.wallet',
   ]
   );
+  Route::get('redeemDetail/{id}',
+  [
+      'uses' => 'RedeemController@getDetail',
+      'as' => 'client.redeemDetail',
+  ]
+  );
 
   Route::get('cart',
   [

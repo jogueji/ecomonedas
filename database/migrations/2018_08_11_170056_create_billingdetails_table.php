@@ -20,6 +20,7 @@ class CreateBillingdetailsTable extends Migration
             $table->decimal('subtotal',8,2);
             $table->unsignedInteger('coupon_id');
             $table->unsignedInteger('bill_id');
+            $table->softDeletes();
             $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
             $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade');
         });

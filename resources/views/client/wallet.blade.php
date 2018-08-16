@@ -42,16 +42,18 @@
           <table class="table table-hover">
             <thead>
               <tr class="table-success">
+                <th scope="col">Numero Factura</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Detalle</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($coupons as $coupon)
+              @foreach ($redeems as $reddem)
                 <tr>
-                  <th scope="row">{{$coupon->created_at}}</th>
+                  <th scope="row">{{$reddem->id}}</th>
+                  <th scope="row">{{$reddem->created_at}}</th>
                   <td>
-                    <a href="{{ route('public.couponDetail', ['id' => $coupon->id]) }}">Detalle</a>
+                    <a href="{{ route('client.redeemDetail', ['id' =>$reddem->id]) }}">Detalle</a>
                   </td>
                 </tr>
               @endforeach

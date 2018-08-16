@@ -18,6 +18,7 @@ class CreateBillsTable extends Migration
             $table->timestamps();
             $table->decimal('total',8,2);
             $table->unsignedInteger('user_id');
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
