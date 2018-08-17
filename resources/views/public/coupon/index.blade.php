@@ -11,13 +11,21 @@
         @foreach($coupons as $coupon)
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 probootstrap-animate">
             <div class="media-item">
-              <p align="center" class="">Disponibles: {{$coupon->stock}}</p>
+              <p align="center">Disponibles: {{$coupon->stock}}</p>
               <figure><img src="{{asset('storage/'.$coupon->image)}}" class="img-responsive"></figure>
               <div class="text">
                 <h2 class="heading">{{$coupon->name}}</h2>
                 <p>Ecomonedas necesarias: {{$coupon->cost}}</p>
                 <p align="center"><a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Ver detalle</a></p>
-                <p align="center"><a href={{route('client.addCoupon', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Añadir al carrito</a></p>
+                @can('buy')
+                  <p align="center">
+                    <form action="{{route('cart.add') }}" method="post" align="center">
+                      <input type="hidden" name="id" value="{{$coupon->id}}">
+                      <input type="number" class="btn btn-primary btn-sm" placeholder="1" step="1" min="1" max="{{$coupon->stock}}" name="cant">
+                      <button type="submit" class="btn btn-primary btn-sm">Añadir</button>
+                    </form>
+                  </p>
+                @endcan
               </div>
             </div>
           </div>
