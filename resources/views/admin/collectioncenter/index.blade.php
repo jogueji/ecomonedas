@@ -49,6 +49,22 @@
         <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
           <h2 class="heading">Ecomonedas generadas por centro de acopio</h2>
         </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+              <label for="cost">Fecha inicial</label>
+              <input type="date" name="fechaInicial" min="2007-01-01" value="{{ date('y-m-d')}}">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <label for="cost">Fecha final</label>
+              <input type="date" name="fechaFinal" value="">
+          </div>
+        </div>
+
+
+
         <div class="col-md-10">
           <div>
             <!--Contenedor grafico-->
