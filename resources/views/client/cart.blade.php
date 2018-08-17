@@ -14,23 +14,22 @@
               <h4 class="sub-heading">Lista de cupones</h4>
           </div>
           <div id="list">
+            {{$cart}}{{$coupons}}
             @foreach($cart as $item)
-              <div class="col-md-12 detail1">
+              <div class="col-md-12 detail{{$item['id']}}">{{--Es un arreglo item por eso se obtiene los datos así--}}
                 <div class="col-md-4">
-                <div class="form-group">
-                    <label for="material1">Material</label>
+                  <h4>{{$item['name']}}</h4>
                 </div>
-              </div>
                 <div class="col-md-4">
-                <div class="form-group">
-                    <label for="kg1">Kilogramos</label>
-                    <input id="kg1" type="number" placeholder="0.0" step="0.01" min="0" class="form-control" name="kg1" value="{{ old('kg1') }}">
+                  <div class="form-group">
+                    <label for="quantity{{$item['id']}}">Cantidad</label>
+                    <input id="quantity{{$item['id']}}" type="number" value="{{$item['quantity']}}" step="1" min="1" class="form-control" name="quantity{{$item['id']}}">
+                  </div>
                 </div>
-              </div>
                 <div class="col-md-4">
                   <br>
                   <div class="form-group">
-                    <a href="#" data-id="1" style="border: 1px solid red;background-color:red;" class="btn btn-primary delete-modal">
+                    <a href="#" data-id="{{$item['id']}}" style="border: 1px solid red;background-color:red;" class="btn btn-primary delete-modal">
                       Eliminar material
                     </a>
                   </div>

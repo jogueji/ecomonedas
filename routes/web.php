@@ -289,13 +289,18 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
   ]
   );
 
-  Route::get('addCoupon/{id}',
+  Route::post('addCart',
   [
-      'uses' => 'CartController@addCoupon',
-      'as' => 'client.addCoupon',
+      'uses' => 'CartController@addCart',
+      'as' => 'client.addCart',
   ]
   );
-
+  Route::get('deleteCoupon/{id}',
+  [
+      'uses' => 'CartController@deleteCoupon',
+      'as' => 'client.deleteCoupon',
+  ]
+  );
   Route::get('downloadPDF/{id}',
   [
     'uses'=>'WalletController@PDFDownload',

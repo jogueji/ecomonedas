@@ -39,7 +39,7 @@ $(document).on('click','.create-modal', function() {
 $(document).on('click','.delete-modal', function() {
   $.ajax({
     type: 'get',
-    url: 'redeem/delete/'+$(this).data('id'),
+    url: 'deleteCoupon/'+$(this).data('id'),
     success: function(data) {
       $('.detail'+data).replaceWith();
     }

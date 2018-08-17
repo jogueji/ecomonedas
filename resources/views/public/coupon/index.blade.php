@@ -2,6 +2,7 @@
 @section('title', 'Lista de cupones canjeables')
 @section('content')
   <section class="probootstrap-section">
+    @include('partials.errors')
     <div class="container">
       <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
         <h4 class="sub-heading">Lista</h4>
@@ -19,9 +20,10 @@
                 <p align="center"><a href={{route('public.couponDetail', ['coupon' => $coupon->id])}} class="btn btn-primary btn-sm">Ver detalle</a></p>
                 @can('buy')
                   <p align="center">
-                    <form action="{{route('cart.add') }}" method="post" align="center">
+                    <form action="{{route('client.addCart') }}" method="post" align="center">
+                      @csrf
+                      <input type="number" class="btn btn-primary btn-sm" name="quantity" value="1" step="1" min="1" max="{{$coupon->stock}}">
                       <input type="hidden" name="id" value="{{$coupon->id}}">
-                      <input type="number" class="btn btn-primary btn-sm" placeholder="1" step="1" min="1" max="{{$coupon->stock}}" name="cant">
                       <button type="submit" class="btn btn-primary btn-sm">Añadir</button>
                     </form>
                   </p>

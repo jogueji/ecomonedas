@@ -13,27 +13,28 @@ class CartController extends Controller
 {
   public function getCart(){
     $user=Auth::user();
+    $coupons=Coupon::all();
     $wallet = Wallet::where('user_id',$user->id)->first();
     $cart=collect(json_decode($wallet->cart,true));
-    return view('client.cart',['cart'=>$cart]);
+    return view('client.cart',['cart'=>$cart,'coupons'=>$coupons]);
   }
 
-  public function addCoupon(Request $request){//recibir la cantidad?//antes de agregar al carrito comprobar cantidades
+  public function addCart(Request $request){//recibir la cantidad?//antes de agregar al carrito comprobar cantidades
     $id=$request->input('id');
     $user=Auth::user();
     $wallet = Wallet::where('user_id',$user->id)->first();
     $cart=collect(json_decode($wallet->cart,true));//lista de cupones
-    if($cart->where(id,$id)->first()==null){
+    if($cart->where('id',$id)->first()==null){
         $coupon=Coupon::find($id);
-        $coupon->quantity=$request->input('quantity');
+        $coupon->quantity=(int)($request->input('quantity'));
         $cart->push($coupon);
     }
     else{
-      $cart->where(id,$id)->first()->quantity+=$quantity;
+      $cart->where('id',$id)->first()['quantity']+=$request->input('quantity');
     }
     $wallet->cart=$cart->toJson();
     $wallet->save();
-    return redirect()->route('public.coupon')->with('message', 'Cupon añadido al carrito');
+    return redirect()->route('public.coupons')->with('message', 'Cupon añadido al carrito');
   }
 
   public function deleteCoupon($id){
@@ -42,6 +43,7 @@ class CartController extends Controller
     $cart=collect(json_decode($wallet->cart,true));
     $cart->pull($id);
     $wallet->cart=$cart->toJson();
-    //return redirect()->route('public.coupon')->with('message', 'Cupon añadido al carrito');
+    $wallet->save();
+    return response()->json($id);
   }
 }
