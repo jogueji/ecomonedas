@@ -2,7 +2,7 @@
 $(document).on('click','.create-modal', function() {
   $.ajax({
     type: 'get',
-    url: 'redeem/detail',
+    url: 'redeem/add',
     success: function(data){
       var materials="";
       $.each(data.materials,function(key,material){
