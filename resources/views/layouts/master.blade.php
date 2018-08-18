@@ -44,6 +44,7 @@
                 <li {{starts_with(Route::currentRouteName(),'cc')?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.material')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.coupons')?'class=active':''}}><a href="{{ route('public.coupons') }}">Cupones</a></li>
+                <li {{starts_with(Route::currentRouteName(), 'public.info')?'class=active':''}}><a href="{{ route('public.info') }}">Acerca De</a></li>
                   @guest
                       <li {{Route::currentRouteName()=='login'?"class=active":''}}><a href="{{ route('login') }}">Ingresar</a></li>
                       <li {{Route::currentRouteName()=='register'?"class=active":''}}><a href="{{ route('register') }}">Registrar</a></li>
