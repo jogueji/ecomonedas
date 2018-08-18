@@ -37,7 +37,7 @@
         <br>
         <div class="col-md-12" align="center">
           <div class="form-group">
-          </br></br><label  class="">Canjes realizados</label>
+          </br></br><h4 class="heading">Canjes realizados</h4>
           </div>
           <table class="table table-hover">
             <thead>
@@ -62,7 +62,7 @@
         </div>
         <div class="col-md-12" align="center">
           <div class="form-group">
-          </br><label  class="">Cupones comprados</label>
+          </br><h4 class="heading">Cupones comprados</h4>
           </div>
           <table class="table table-hover">
             <thead>
@@ -82,7 +82,7 @@
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-primary" href="{{ route('client.wallet.pdf',$wallet->id)}}">Descargar PDF</a>
+          <a class="btn btn-primary text-center" href="{{ route('client.wallet.pdf',$wallet->id)}}">Descargar PDF</a>
         </div>
       </div>
       <div class="col-md-4" align="center">
