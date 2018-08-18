@@ -19,10 +19,9 @@ class WalletController extends Controller
   public function getWallet(){
   $user=Auth::user();
   $wallet = Wallet::where('user_id',$user->id)->first();
-  $coupons = Coupon::orderby('created_at','desc')->get();
   $bills= Bill::where('user_id',$user->id)->get();
   $redeems= Redeem::where('userclient_id',$user->id)->get();
-  return view('client.wallet',['wallet'=>$wallet, 'user'=>$user, 'coupons'=>$coupons,
+  return view('client.wallet',['wallet'=>$wallet, 'user'=>$user,
    'bills'=>$bills, 'redeems'=>$redeems]);
 }
 

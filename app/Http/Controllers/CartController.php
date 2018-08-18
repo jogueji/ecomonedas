@@ -22,7 +22,10 @@ class CartController extends Controller
     $cart=collect(json_decode($wallet->cart,true));
     return view('client.cart',['cart'=>$cart,'coupons'=>$coupons,'residue'=>$wallet->totaleco]);
   }
-
+  public function getDetail(Bill $id){
+    $bill=Bill::find($id->id);
+    return view('client.billDetail',['bill'=>$bill]);
+  }
   public function addCart(Request $request){//recibir la cantidad?//antes de agregar al carrito comprobar cantidades
     $id=$request->input('id');
     $user=Auth::user();
@@ -124,6 +127,6 @@ class CartController extends Controller
       $billingDetail->bill()->associate($bill);
       $billingDetail->save();
     }
-    return redirect()->route('cart.detail',['id' => $bill->id])->with('message', 'Cupones canjeados');//detalles
+    return redirect()->route('client.detail',['id' => $bill->id])->with('message', 'Cupones canjeados');//detalles
   }
 }

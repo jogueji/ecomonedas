@@ -24,17 +24,17 @@ Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
     'middleware'=>'can:detail-redeem,id'
   ]
   );
-  Route::get('pdf/{id}',
-  [
-    'uses'=>'RedeemController@descargarPDF',
-    'as'=>'redeem.pdf',
-    'middleware'=>'can:detail-redeem,id'
-  ]
-  );
   Route::get('add','RedeemController@addDetail')->name('redeem.add');
   Route::get('delete/{id}','RedeemController@deleteDetail')->name('redeem.delete');
   Route::post('create','RedeemController@redeem')->name('redeem.create');
 });
+Route::get('redeem/pdf/{id}',
+[
+  'uses'=>'RedeemController@descargarPDF',
+  'as'=>'redeem.pdf',
+  'middleware'=>'can:detail-redeem,id'
+]
+);
 
 Route::group(['prefix'=>'public'], function(){
   Route::get('info/', function () {
@@ -320,13 +320,14 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
   [
     'uses'=>'CartController@getDetail',
     'as'=>'client.detail',
-    'middleware'=>'can:edit-user,user'
+    'middleware'=>'can:detail-buy,id'
   ]
   );
-  Route::get('downloadPDF/{id}',
+  Route::get('pdf/{id}',
   [
     'uses'=>'WalletController@PDFDownload',
-    'as'=>'client.wallet.pdf'
+    'as'=>'client.pdf',
+    'middleware'=>'can:detail-buy,id'
   ]
   );
 

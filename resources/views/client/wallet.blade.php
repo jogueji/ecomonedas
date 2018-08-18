@@ -67,22 +67,23 @@
           <table class="table table-hover">
             <thead>
               <tr class="table-success">
-                <th scope="col">Nombre</th>
+                <th scope="col">Numero Factura</th>
+                <th scope="col">Fecha</th>
                 <th scope="col">Detalle</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($coupons as $coupon)
+              @foreach ($bills as $bill)
                 <tr>
-                  <th scope="row">{{$coupon->name}}</th>
+                  <th scope="row">{{$bill->id}}</th>
+                  <th scope="row">{{$bill->created_at}}</th>
                   <td>
-                    <a href="{{ route('public.couponDetail', ['id' => $coupon->id]) }}">Detalle</a>
+                    <a href="{{ route('client.detail', ['id' =>$bill->id]) }}">Detalle</a>
                   </td>
                 </tr>
               @endforeach
             </tbody>
           </table>
-          <a class="btn btn-primary text-center" href="{{ route('client.wallet.pdf',$wallet->id)}}">Descargar PDF</a>
         </div>
       </div>
       <div class="col-md-4" align="center">
