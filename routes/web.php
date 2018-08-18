@@ -301,6 +301,8 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
       'as' => 'client.deleteCoupon',
   ]
   );
+  Route::post('create','CartController@buy')->name('client.buy');
+  Route::post('change','CartController@changeCart')->name('client.change');
   Route::get('downloadPDF/{id}',
   [
     'uses'=>'WalletController@PDFDownload',
