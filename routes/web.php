@@ -17,8 +17,20 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'redeem','middleware'=>'can:redeem'], function(){
   Route::get('/', 'RedeemController@getIndex')->name('redeem.index');
-  Route::get('detail/{id}', 'RedeemController@getDetail')->name('redeem.detail');
-  Route::get('pdf/{id}', 'RedeemController@descargarPDF')->name('redeem.pdf');
+  Route::get('detail/{id}',
+  [
+    'uses'=>'RedeemController@getDetail',
+    'as'=>'redeem.detail',
+    'middleware'=>'can:detail-redeem,id'
+  ]
+  );
+  Route::get('pdf/{id}',
+  [
+    'uses'=>'RedeemController@descargarPDF',
+    'as'=>'redeem.pdf',
+    'middleware'=>'can:detail-redeem,id'
+  ]
+  );
   Route::get('add','RedeemController@addDetail')->name('redeem.add');
   Route::get('delete/{id}','RedeemController@deleteDetail')->name('redeem.delete');
   Route::post('create','RedeemController@redeem')->name('redeem.create');
@@ -277,11 +289,11 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
   );
   Route::get('redeemDetail/{id}',
   [
-      'uses' => 'RedeemController@getDetail',
-      'as' => 'client.redeemDetail',
+    'uses'=>'RedeemController@getDetail',
+    'as'=>'client.redeemDetail',
+    'middleware'=>'can:detail-redeem,id'
   ]
   );
-
   Route::get('cart',
   [
       'uses' => 'CartController@getCart',
@@ -303,6 +315,14 @@ Route::group(['prefix'=>'buy','middleware'=>'can:buy'], function(){
   );
   Route::post('create','CartController@buy')->name('client.buy');
   Route::post('change','CartController@changeCart')->name('client.change');
+
+  Route::get('detail/{id}',
+  [
+    'uses'=>'CartController@getDetail',
+    'as'=>'client.detail',
+    'middleware'=>'can:edit-user,user'
+  ]
+  );
   Route::get('downloadPDF/{id}',
   [
     'uses'=>'WalletController@PDFDownload',

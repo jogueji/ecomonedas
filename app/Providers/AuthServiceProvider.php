@@ -49,12 +49,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('buy', function($user){
           return $user -> hasAccess(['buy']);
         });
-        /*
-        Gate::define('buy', function($user){
-            return $user->tieneRol('supervisor') or $user->tieneRol('propietario');
+
+        Gate::define('detail-redeem', function($user,\App\Redeem $redeem){
+          return ($user -> hasAccess(['redeem']) or
+                 ($user -> hasAccess(['buy']) and $redeem->userClient->id==\Auth::user()->id));
         });
 
-        Gate::define('publish-vj', function($user){
+        Gate::define('detail-buy', function($user,\App\Bill $bill){
+          return ($user -> hasAccess(['buy']) and $bill->user->id==\Auth::user()->id);
+        });
+
+        /*Gate::define('publish-vj', function($user){
             return $user->tieneAcceso(['publish-vj']);
         });*/
         //

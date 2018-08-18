@@ -124,6 +124,6 @@ class CartController extends Controller
       $billingDetail->bill()->associate($bill);
       $billingDetail->save();
     }
-    return redirect()->route('index',['id' => $bill->id])->with('message', 'Cupones canjeados');//detalles
+    return redirect()->route('cart.detail',['id' => $bill->id])->with('message', 'Cupones canjeados');//detalles
   }
 }

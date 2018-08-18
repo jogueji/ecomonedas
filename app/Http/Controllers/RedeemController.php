@@ -15,10 +15,10 @@ use Illuminate\Session\Store;
 
 class RedeemController extends Controller
 {
-  public function descargarPDF($id){
-    $redeem = Redeem::find($id);
+  public function descargarPDF(Redeem $id){
+    $redeem = Redeem::find($id->id);
     $pdf=PDF::loadView('redeem.redeemPDF',compact('redeem'));
-    return $pdf->download('Factura Canjeo Materiales #'.$id.'.pdf');
+    return $pdf->download('Factura Canjeo Materiales #'.$id->id.'.pdf');
   }
 
   public function getIndex(Store $session){
@@ -35,8 +35,8 @@ class RedeemController extends Controller
     }
     return view('redeem.redeem',['users'=>$users,'materials'=>$materials,]);
   }
-  public function getDetail($id){
-    $redeem=Redeem::find($id);
+  public function getDetail(Redeem $id){
+    $redeem=Redeem::find($id->id);
     return view('redeem.redeemDetail',['redeem'=>$redeem]);
   }
   public function addDetail(Store $session){

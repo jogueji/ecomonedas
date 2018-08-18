@@ -23,22 +23,19 @@
             @endforeach
             <p class="sub-heading" style="margin-bottom:0px">Total de ecomonedas</p>
             <h4 class="heading">{{$redeem->total}}</h4>
+            <div class="col-md-6" align="right">
+              <a class="btn btn-primary" href="{{route('redeem.pdf',['id'=>$redeem->id])}}">Descargar</a>
+            </div>
             @can ('redeem')
-              <div class="col-md-4" align="right">
-                <a class="btn btn-primary" href="{{route('redeem.pdf',['id'=>$redeem->id])}}">Descargar</a>
+              <div class="col-md-6" align="left">
+                <a class="btn btn-primary" href="{{ route('index')}}">Menu principal</a>
               </div>
             @endcan
             @can ('buy')
-              <div class="col-md-4" align="right">
+              <div class="col-md-6" align="left">
                 <a class="btn btn-primary" href="{{route('client.wallet')}}">Regresar</a>
               </div>
             @endcan
-            <div class="col-md-4" align="center">
-              <a class="btn btn-primary" href="{{route('index')}}">Enviar Email</a>
-            </div>
-            <div class="col-md-4" align="left">
-              <a class="btn btn-primary" href="{{ route('index')}}">Menu principal</a>
-            </div>
           </div>
       </div>
       <div class="col-md-4" align="center">
