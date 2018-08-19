@@ -59,8 +59,8 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-              <label for="cost">Fecha final</label>
-              <input type="date" name="fechaFinal" min="{{$fechaInicial}}" max="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}">
+              <label for="fechaFinal">Fecha final</label>
+              <input type="date" name="fechaFinal" min="" max="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}">
           </div>
         </div>
         <div class="col-md-4">

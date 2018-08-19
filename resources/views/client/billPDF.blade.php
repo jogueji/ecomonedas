@@ -120,7 +120,7 @@
             </td>
             <td>
               @foreach($bill->billingdetails as $detail)
-                Cantidad: {{$detail->quantity}}-Cupon: {{$detail->coupon->name}} - Ecomonedas:{{$detail->subtotal}}<br>
+                Cantidad:{{$detail->quantity}}-Cupon:{{$detail->coupon->name}}-Ecomonedas:{{$detail->subtotal}}<br>
               @endforeach
             </td>
           </tr>
