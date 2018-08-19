@@ -7,6 +7,7 @@ use App\Wallet;
 use App\Bill;
 use App\Billingdetail;
 use Auth;
+use PDF;
 use Gate;
 use View;
 use Validator;
@@ -15,6 +16,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+  public function descargarPDF(Bill $id){
+    $bill = Bill::find($id->id);
+    $pdf=PDF::loadView('client.billPDF',compact('bill'));
+    return $pdf->download('ComprobanteCompra_#'.$id->id.'.pdf');
+  }
+
   public function getCart(){
     $user=Auth::user();
     $coupons=Coupon::all();

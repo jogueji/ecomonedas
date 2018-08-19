@@ -35,6 +35,13 @@ Route::get('redeem/pdf/{id}',
   'middleware'=>'can:detail-redeem,id'
 ]
 );
+Route::get('bill/pdf/{id}',
+[
+  'uses'=>'CartController@descargarPDF',
+  'as'=>'bill.pdf',
+  'middleware'=>'can:detail-buy,id'
+]
+);
 
 Route::group(['prefix'=>'public'], function(){
   Route::get('info/', function () {
@@ -84,6 +91,11 @@ Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(
   ]
   )->name('adminCenter.index');
 
+  Route::post('/', [
+    'uses'=>'CollectionCenterController@getAdminIndex'
+  ]
+  )->name('adminCenter.graphic');
+
   Route::get('create',
   [
     'uses'=>'CollectionCenterController@getCreate',
@@ -94,7 +106,7 @@ Route::group(['prefix'=>'adminCenter','middleware'=>'can:management'], function(
   Route::post('create',
   [
       'uses' => 'CollectionCenterController@setCreate',
-      'as' => 'adminUser.create'
+      'as' => 'adminCenter.create'
   ]
   );
 

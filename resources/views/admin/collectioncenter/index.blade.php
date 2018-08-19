@@ -49,26 +49,27 @@
         <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
           <h2 class="heading">Ecomonedas generadas por centro de acopio</h2>
         </div>
-
+<form action="{{ route('adminCenter.graphic') }}" method="post" enctype="multipart/form-data" class="probootstrap-form mb60">
+  @csrf
         <div class="col-md-4">
           <div class="form-group">
-              <label for="cost">Fecha inicial</label>
-              <input type="date" name="fechaInicial" min="2007-01-01" value="{{ date('y-m-d')}}">
+              <label for="fechaInicial">Fecha inicial</label>
+              <input type="date" name="fechaInicial" min="2007-01-01" max="{{date('Y-m-d')}}" value="{{$fechaInicial}}">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
               <label for="cost">Fecha final</label>
-              <input type="date" name="fechaFinal" value="">
+              <input type="date" name="fechaFinal" min="{{$fechaInicial}}" max="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label ></label>
-          <a href="" class="btn btn-success">Graficar</a>
+          <button type="submit" class="btn btn-primary">Graficar</button>
           </div>
         </div>
-
+</form>
 
 
         <div class="col-md-10">

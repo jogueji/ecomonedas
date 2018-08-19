@@ -9,18 +9,28 @@ use App\Province;
 use App\Redeem;
 use Auth;
 use Gate;
+use DB;
 use Carbon\Carbon;
 use App\Charts\Graficos;
 use Illuminate\Session\Store;
 
 class CollectionCenterController extends Controller
 {
-  public function getAdminIndex(){
+  public function getAdminIndex(Request $request){
+    $fechaInicial= Carbon::now()->subMonths(1)->toDateString();
+    $fechaFinal=date('today');
+    $fechaHoy=date('today');
+    $fechaIni = $request->input('fechaInicial');
+    $fechaFin = $request->input('fechaFinal');
+
       $chart = new Graficos();
       $centers = Collectioncenter::orderBy('name', 'asc')->get();
       $chart->labels($centers->pluck('name'));
       $title="Ecomonedas generadas";
-      $redeems =Redeem::all();
+      //$redeems =Redeem::all();
+    //  $redeems =Redeem::all()->whereBetween('created_at', $fechaIni, $fechaFin)->get();
+
+      $redeems = DB::table('redeems')->whereBetween('created_at', array($fechaIni, $fechaFin))->get();
       $totals=[];
       foreach($centers as $item){
         if($redeems->Where('collectioncenter_id',$item->collectioncenter_id)!=null)
@@ -33,7 +43,7 @@ class CollectionCenterController extends Controller
       $dataset->backgroundColor(['#a9cce3', ' #a9dfbf', '#fad7a0','#c39bd3','#f9e79f','#a3e4d7', '#fadbd8', '#e59866']);
       $dataset->color(['#2980b9', '#52be80', '#f0b27a','#7d3c98', '#f4d03f','#48c9b0','#f1948a','#d35400']);
       $centers = Collectioncenter::orderBy('created_at', 'desc')->paginate(4);
-      return view('admin.collectioncenter.index',['centers'=>$centers,'chart' => $chart]);
+      return view('admin.collectioncenter.index',['centers'=>$centers,'chart' => $chart, 'fechaFinal'=>$fechaFinal,'fechaInicial'=>$fechaInicial, 'fechaHoy'=>$fechaHoy]);
     }
 
   public function getCenter($id)

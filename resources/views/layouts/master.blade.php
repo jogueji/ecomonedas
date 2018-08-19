@@ -42,7 +42,7 @@
                   <li {{Route::currentRouteName()=='client.cart'?"class=active":''}}><a href="{{ route('client.cart') }}">Carrito<img src="{{asset('img/emptyCart.png')}}" height="3%" width="3%"></a></li>
                 @endcan
                 <li {{starts_with(Route::currentRouteName(),'cc')?"class=active":''}}><a href="{{ route('cc.index') }}">Centros</a></li>
-                <li {{starts_with(Route::currentRouteName(), 'public.material')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>
+                <li {{starts_with(Route::currentRouteName(), 'public.materials')?'class=active':''}}><a href="{{ route('public.materials') }}">Materiales</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.coupons')?'class=active':''}}><a href="{{ route('public.coupons') }}">Cupones</a></li>
                 <li {{starts_with(Route::currentRouteName(), 'public.info')?'class=active':''}}><a href="{{ route('public.info') }}">Acerca De</a></li>
                   @guest

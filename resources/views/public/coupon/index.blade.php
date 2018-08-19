@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('title', 'Lista de cupones canjeables')
 @section('content')
+  @include('partials.errors')
   <section class="probootstrap-section">
-    @include('partials.errors')
     <div class="container">
       <div class="probootstrap-section-heading text-center mb50 probootstrap-animate">
         <h4 class="sub-heading">Lista</h4>

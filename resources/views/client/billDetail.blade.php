@@ -20,7 +20,7 @@
             <p class="sub-heading" style="margin-bottom:0px">Total de ecomonedas</p>
             <h4 class="heading">{{$bill->total}}</h4>
             <div class="col-md-6" align="right">
-              <a class="btn btn-primary" href="">Descargar</a>
+              <a class="btn btn-primary" href="{{route('bill.pdf',['id'=>$bill->id])}}">Descargar</a>
             </div>
             <div class="col-md-6" align="left">
               <a class="btn btn-primary" href="{{route('client.wallet')}}">Ir a billetera</a>
