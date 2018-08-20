@@ -21,6 +21,11 @@
           </div>
         @endforeach
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          {{$materials->links()}}
+        </div>
+      </div>
     </div>
   </section>
 @endsection

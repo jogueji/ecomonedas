@@ -24,7 +24,8 @@ class CollectionCenterController extends Controller
       $centers = Collectioncenter::orderBy('name', 'asc')->whereBetween('created_at',array($fechaIni,$fechaFin))->get();
       $chart->labels($centers->pluck('name'));
       $title="Ecomonedas generadas";
-      $redeems =Redeem::all();
+      $redeems =Redeem::orderBy('id', 'asc')->whereBetween('created_at',array($fechaIni,$fechaFin))->get();
+      //$redeems =Redeem::all();
       $totals=[];
       foreach($centers as $item){
         if($redeems->Where('collectioncenter_id',$item->collectioncenter_id)!=null)
